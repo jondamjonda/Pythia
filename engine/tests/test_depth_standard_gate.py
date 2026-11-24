@@ -12,6 +12,7 @@ dimension. The orchestrator's pre-serve gate is:  `.venv/bin/python scripts/corp
 
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -104,8 +105,62 @@ async def test_domain_gate_rejects_bogus_domain():
     await cds.close_pool()
 
 
-def test_refusal_dimension_looks_for_the_app_inside_the_monorepo(monkeypatch):
-    """The calibrated refusal floor lives in the app (app/src/regsuper); the lookup must point there."""
+# ───────────────────────────────────────────────────────── pure: the refusal dimension's live-floor lookup
+def _clear_app_settings() -> None:
+    config = sys.modules.get("regsuper.config")
+    if config is not None:
+        config.get_settings.cache_clear()
+
+
+@pytest.fixture
+def app_settings(monkeypatch, tmp_path):
+    """Sandbox the app settings the refusal lookup builds: its data and log dirs go to tmp_path."""
     monkeypatch.setattr(sys, "path", list(sys.path))
-    cds._dim_refusal()
+    data = tmp_path / "data"
+    data.mkdir()
+    monkeypatch.setenv("DATA_DIR", str(data))
+    monkeypatch.setenv("LOG_DIR", str(tmp_path / "logs"))
+    monkeypatch.delenv("CASCADE_REFUSAL_FLOOR", raising=False)
+    _clear_app_settings()
+    yield data
+    _clear_app_settings()
+
+
+def test_refusal_dimension_reads_the_live_floor_from_the_app(app_settings):
+    """The calibrated refusal floor lives in the app (app/src/regsuper). The app's accessor must
+    actually run in the engine environment: with nothing published it reports the app's own
+    fallback, not an import failure."""
+    dim = cds._dim_refusal()
     assert (Path(sys.path[0]) / "regsuper" / "calibration" / "runtime.py").is_file()
+    assert dim["detail"]["live_floor_source"] == "fallback (0.5)"
+    assert dim["detail"]["floor_tuned"] is False
+    assert "un-tuned" in dim["summary"]
+
+
+def test_refusal_dimension_reports_a_published_floor(app_settings):
+    (app_settings / "refusal_calibration.json").write_text(
+        json.dumps({"cascade_applicability_floor": 0.42}), encoding="utf-8"
+    )
+    dim = cds._dim_refusal()
+    assert dim["detail"]["floor_tuned"] is True
+    assert dim["detail"]["live_floor_source"] == "calibrated (0.42)"
+    assert "calibrated floor in use" in dim["summary"] and "un-tuned" not in dim["summary"]
+
+
+def test_refusal_floor_is_resolved_from_the_app_directory(app_settings, monkeypatch):
+    """The app's settings resolve secrets.env, .env and the relative ./data from the app's own
+    directory, so the lookup runs there whatever directory the script was started from."""
+    cds._dim_refusal()  # puts app/src on sys.path
+    from regsuper.calibration import runtime
+
+    seen: list[Path] = []
+
+    def _fake_floor():
+        seen.append(Path.cwd())
+        return runtime.RefusalThreshold(value=0.5, source="fallback")
+
+    monkeypatch.setattr(runtime, "get_cascade_refusal_floor", _fake_floor)
+    before = Path.cwd()
+    cds._dim_refusal()
+    assert seen == [Path(cds.__file__).resolve().parents[2] / "app"]
+    assert Path.cwd() == before

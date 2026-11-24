@@ -78,6 +78,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import contextlib
 import json
 import sys
 from pathlib import Path
@@ -527,16 +528,20 @@ async def _dim_caselaw(conn) -> dict:
 def _dim_refusal() -> dict:
     floor_tuned = False
     live_floor_source = "fallback (0.5)"
+    app_dir = Path(__file__).resolve().parents[2] / "app"
     try:
         # The app half of the monorepo (app/src) owns the calibrated refusal floor.
-        sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "app" / "src"))
+        sys.path.insert(0, str(app_dir / "src"))
         from regsuper.calibration.runtime import get_cascade_refusal_floor  # type: ignore
 
-        rt = get_cascade_refusal_floor()
+        # Resolve it as the app does: the app's settings read secrets.env / .env and the
+        # relative data_dir ("./data") from the app's own directory, not from where this runs.
+        with contextlib.chdir(app_dir):
+            rt = get_cascade_refusal_floor()
         floor_tuned = rt.source == "calibrated"
         live_floor_source = f"{rt.source} ({rt.value})"
-    except Exception:  # noqa: BLE001 — accessor unavailable; keep the fallback
-        pass
+    except Exception as exc:  # noqa: BLE001 — accessor unavailable; keep the fallback, say why
+        live_floor_source = f"fallback (0.5); app accessor unavailable: {type(exc).__name__}: {exc}"
     return {
         "name": "refusal ≥95%/domain",
         "ok": None,
@@ -545,7 +550,8 @@ def _dim_refusal() -> dict:
         "metric": None,
         "target": REFUSAL_TARGET,
         "summary": (
-            f"floor_tuned={str(floor_tuned).lower()} — un-tuned (0.5 fallback); "
+            f"floor_tuned={str(floor_tuned).lower()} — "
+            f"{'calibrated floor in use' if floor_tuned else 'un-tuned (fallback floor)'}; "
             f"HUMAN-GATED (needs a lawyer-labelled eval set; 0 labelled today). "
             f"live cascade floor source = {live_floor_source}. NOT a fabricated pass — HOLD."
         ),
