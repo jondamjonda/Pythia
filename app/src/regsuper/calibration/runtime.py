@@ -30,12 +30,22 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any, Literal
 
 from regsuper.config import get_settings
-from regsuper.observability.logging_config import get_logger
 
 if TYPE_CHECKING:
     from regsuper.calibration.threshold import ThresholdReport
 
-_log = get_logger(__name__)
+
+def _logger():
+    """Return this module's structlog logger, importing logging only when something is logged.
+
+    The read accessors need nothing beyond the settings, so a caller outside the app process
+    (engine/scripts/corpus_depth_standard.py, whose environment has no structlog) can resolve
+    the live floor by importing this module.
+    """
+    from regsuper.observability.logging_config import get_logger
+
+    return get_logger(__name__)
+
 
 CALIBRATION_FILENAME = "refusal_calibration.json"
 
@@ -203,7 +213,7 @@ def warn_if_fallback_threshold() -> RefusalThreshold:
     rt = get_refusal_threshold()
     if rt.source == "fallback":
         settings = get_settings()
-        _log.warning(
+        _logger().warning(
             "refusal_threshold_uncalibrated_fallback",
             value=rt.value,
             cohere_key_present=bool(settings.cohere_api_key),
@@ -232,7 +242,7 @@ async def publish_calibrated_threshold_from_db() -> RefusalThreshold:
     rows = await load_labeled_evals()
     report = fit_threshold(rows)
     resolved = save_calibrated_threshold(report)
-    _log.info(
+    _logger().info(
         "refusal_threshold_published",
         value=resolved.value,
         source=resolved.source,

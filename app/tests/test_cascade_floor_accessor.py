@@ -19,6 +19,9 @@ test_refusal_calibration.py).
 from __future__ import annotations
 
 import json
+import os
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -109,3 +112,25 @@ def test_refusal_threshold_accessor_is_unchanged(_tmp_data_dir: Path):
     rt = runtime.get_refusal_threshold()
     assert rt.source == "fallback"
     assert rt.value == pytest.approx(get_settings().refusal_threshold)
+
+
+def test_floor_resolves_without_structlog(tmp_path: Path):
+    # The read path needs only the settings, so a process without structlog (the engine's
+    # environment, where scripts/corpus_depth_standard.py reads the floor) can still resolve it.
+    # Run in a fresh interpreter: this one has already imported structlog.
+    code = (
+        "import sys; sys.modules['structlog'] = None\n"
+        "from regsuper.calibration.runtime import get_cascade_refusal_floor\n"
+        "print(get_cascade_refusal_floor().source)\n"
+    )
+    env = {
+        **os.environ,
+        "PYTHONPATH": str(Path(runtime.__file__).resolve().parents[2]),
+        "DATA_DIR": str(tmp_path / "data"),
+        "LOG_DIR": str(tmp_path / "logs"),
+    }
+    out = subprocess.run(
+        [sys.executable, "-c", code], cwd=tmp_path, env=env, capture_output=True, text=True
+    )
+    assert out.returncode == 0, out.stderr
+    assert out.stdout.strip() == "fallback"
