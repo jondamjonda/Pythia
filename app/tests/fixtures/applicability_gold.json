@@ -1,0 +1,718 @@
+{
+  "note": "Gold slice for applicability_eval — 79 obligations from the B3-06a sample, all lawyer-confirmed faithful. Vendored fields only (actor/modal/statement/confidence); no client data. See Polarius Project/Gated Decisions Prep/B3-06a_lawyer_sample_reviewed.json for the full reviewed source.",
+  "source": "B3-06a_lawyer_sample_reviewed.json",
+  "n": 79,
+  "findings": [
+    {
+      "type": "obligation",
+      "statement": "ensure remuneration or performance assessment of staff does not conflict with duty to act in the best interests of clients",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Investment firms",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "notify the appointment of the external valuer to the competent authorities of their home Member State",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "ensure the appointment of the depositary is evidenced by written contract",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFM",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "ensure that the AIF’s cash flows are properly monitored and that all payments made by or on behalf of investors upon the subscription of units or shares of an AIF have been received and that all cash of the AIF has been booked in cash accou",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "depositary",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "understand the financial instruments they offer or recommend and ensure they are in the interest of the client",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Investment firms",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "demonstrate that the external valuer is subject to mandatory professional registration, can provide sufficient professional guarantees, and complies with Article 20 requirements",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "ensure that a single depositary is appointed for each AIF it manages",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFM",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "be established in the home Member State of the AIF for EU AIFs or in the third country where the AIF is established, in the home Member State of the AIFM managing the AIF, or in the Member State of reference of the AIFM managing the AIF for",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "depositary",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "offer investment in a qualified investor fund contrary to specified regulations",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "use certain designations in their business contrary to § 636",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "perform administration of an investment fund without permission",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "administrator of an investment fund or foreign investment fund",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "ensure all information addressed to clients or potential clients is fair, clear and not misleading",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Investment firms",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "ensure that appropriate and consistent procedures are established for a proper and independent valuation of the assets of the AIF",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "be responsible for the proper valuation of AIF assets, the calculation of the net asset value and the publication of that net asset value",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "be a credit institution, investment firm, or another category of institution subject to prudential regulation and ongoing supervision",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "depositary",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "collect or attempt to collect monetary funds or monetarily valuable items contrary to § 98 or 205",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "fail to notify the Czech National Bank of certain facts according to § 467 odst. 4 or § 524 odst. 1",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "perform activities listed in paragraph 1 (c) and (p) only if agreed in the administration contract",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "administrator of an investment fund or foreign investment fund",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "provide appropriate information in good time to clients or potential clients",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Investment firms",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "delegate the valuation function to a third party",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "external valuer",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "fail to cooperate with a liquidator contrary to § 353",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "provide an additional amount of own funds equal to 0.02% of the amount by which the value of the portfolios exceeds EUR 250 million",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFM",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "review the risk management systems with appropriate frequency at least once a year and adapt them whenever necessary",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "odpovídat za správnost a úplnost údajů uvedených v registračním dokumentu nebo univerzálním registračním dokumentu",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "osoby uvedené v odstavci 1",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "require that the AIFMs provide the competent authorities of their home Member State with the information they require to monitor compliance with the conditions referred to in this Directive at all times",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Member States",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "require that investment firms act honestly, fairly and professionally in accordance with the best interests of their clients",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Member States",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "provide information in a comprehensible form",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Investment firms",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "act as depositary",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFM",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "perform the role of a leading person contrary to § 515",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "odpovídat za obsah prospektu",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "osoby, které sestavily prospekt společně",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "meet the conditions for authorisation established in this Directive at all times",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "not be authorised under this Directive to provide non-core services referred to in point (b) of paragraph 4 without also being authorised to provide the services referred to in point (a) of paragraph 4",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "perform activities under paragraph 1 letters d) to f) unless authorized to perform activity under paragraph 1 letter c)",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "investment company and foreign entity with permission under § 481",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "ensure financial instruments are designed to meet the needs of an identified target market and distributed accordingly",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Investment firms",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "not accept and retain fees, commissions or any monetary or non-monetary benefits from third parties when providing portfolio management",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Investment firms",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "ensure that the valuation function is performed by an external valuer or the AIFM itself with functional independence",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "act as depositary for an AIF unless it has functionally and hierarchically separated the performance of its depositary functions from its tasks as prime broker and the potential conflicts of interest are properly identified, managed, monito",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "prime broker",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "preliminarily offer investment in certain funds contrary to specified regulations",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "have an initial capital of at least EUR 125000 when appointed as external manager of AIFs",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFM",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "implement adequate risk management systems to identify, measure, manage and monitor appropriately all risks relevant to each AIF investment strategy",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "ensure that the net asset value per unit or share of AIFs is calculated and disclosed to the investors",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "be liable to the AIFM for any losses suffered by the AIFM as a result of the external valuer’s negligence or intentional failure to perform its tasks",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "external valuer",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "facilitate or enable prohibited activities contrary to § 99",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "use certain words in their name contrary to § 634",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "authorise AIFMs not to provide up to 50% of the additional amount of own funds if they benefit from a guarantee",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Member States",
+        "modal": "may"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "implement an appropriate, documented and regularly updated due diligence process when investing on behalf of the AIF",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "odpovídat za správnost údajů v prospektu, pokud je uveden v prospektu a zaručil se za správnost údajů",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "ručitel",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "authorise an external AIFM to provide the services listed in paragraph 4",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Member States",
+        "modal": "may"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "perform or offer activities requiring authorization from the Czech National Bank without proper authorization",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "offer investment in a special fund or comparable foreign investment fund before certain conditions are met",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "invest own funds in liquid assets or assets readily convertible to cash in the short term and not include speculative positions",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFM",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "functionally and hierarchically separate the functions of risk management from the operating units, including from the functions of portfolio management",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "ensure that the risk profile of the AIF corresponds to the size, portfolio structure and investment strategies and objectives of the AIF",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "not be authorised under this Directive to provide only the activities referred to in point 2 of Annex I",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "act as a trustee of a trust fund that is not an investment fund and includes an investment instrument",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "investment company with permission to provide investment service under paragraph 1 letter c)",
+        "modal": "may"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "provide incorrect information or conceal facts in connection with applications for decisions, appointments, authorizations, consents, or registrations",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "publicly offer investment in an investment fund or foreign investment fund before certain conditions are met",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "Legal or entrepreneurial natural person",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "require that no internally managed AIF shall engage in activities other than the internal management of that AIF in accordance with Annex I",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Member States",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "not be required to obtain an authorisation under this Directive in order to provide investment services such as individual portfolio management in respect of AIFs",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Investment firms and credit institutions",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "require that an AIFM which is an internally managed AIF has an initial capital of at least EUR 300000",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Member States",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "either have additional own funds appropriate to cover potential liability risks or hold a professional indemnity insurance",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "ensure that the risks associated with each investment position of the AIF and their overall effect on the AIF’s portfolio can be properly identified, measured, managed and monitored on an ongoing basis",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "ensure that no AIFMs manage AIFs unless they are authorised in accordance with this Directive",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Member States",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "not be authorised under this Directive to provide only the services referred to in paragraph 4",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "perform activities listed in paragraph 1 within the scope of permission granted by the Czech National Bank",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "investment company and foreign entity with permission under § 481",
+        "modal": "may"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "perform only activities under paragraph 1, activities authorized by the Czech National Bank under another legal regulation, or other business activities approved by the Czech National Bank under § 508",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "investment company or foreign entity with permission under § 481",
+        "modal": "may"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "ensure own funds are never less than the amount required under Article 21 of Directive 2006/49/EC",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFM",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "odpovídat za správnost a úplnost údajů uvedených v prospektu",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "osoba, která sestavila prospekt",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "offer units or shares of AIFs to, or place such units or shares with, investors in the Union only to the extent the units or shares can be marketed in accordance with this Directive",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Investment firms",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "manage foreign investment fund comparable to a standard fund unless managing at least one standard fund",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "investment company authorized to manage standard funds or comparable foreign investment funds",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "set a maximum level of leverage which they may employ on behalf of each AIF they manage",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "odpovídat za správnost údajů uvedených ve shrnutí prospektu",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "osoba uvedená v odstavci 1",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "require that no external AIFM engage in activities other than those referred to in Annex I to this Directive and the additional management of UCITS subject to authorisation under Directive 2009/65/EC",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "Member States",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "not be authorised under this Directive to provide the services referred to in point 1(a) of Annex I without also providing the services referred to in point 1(b) of Annex I or vice versa",
+      "confidence": 1.0,
+      "payload": {
+        "actor": "AIFMs",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "manage European long-term investment funds",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "foreign entity with permission under § 481",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "hold additional capital of 0.02% of the value of assets managed under paragraph 6 or 7 when performing activities under these paragraphs",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "investment company",
+        "modal": "shall"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "perform activities listed in paragraph 1 letter e) and in paragraph 6",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "investment company authorized to manage only standard funds or comparable foreign investment funds",
+        "modal": "must_not"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "act as a trustee of a trust fund that is not an investment fund and does not include an investment instrument, or manage customer assets that do not include an investment instrument",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "investment company",
+        "modal": "may"
+      }
+    },
+    {
+      "type": "obligation",
+      "statement": "comply with rules of conduct for securities dealers with customers regarding the provision of investment service under § 4 paragraph 2 letter d) of the Capital Market Business Act when performing activities under paragraph 7",
+      "confidence": 0.8999999761581421,
+      "payload": {
+        "actor": "investment company",
+        "modal": "shall"
+      }
+    }
+  ]
+}

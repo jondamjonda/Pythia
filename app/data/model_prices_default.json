@@ -1,0 +1,26 @@
+{
+  "_comment": "Committed default price book for observability/pricing.py::estimate_cost. Operator overrides go in data/model_prices.json (layered OVER this file, picked up live via the TTL cache — no restart). Seeded faithfully from api_tracker._PRICES (per-1M-token) + _COHERE_PRICES_PER_CALL (flat per-call). Update when the provider list price changes; raw token/call counts are persisted in api_call so historical rows can be re-costed.",
+  "token": {
+    "_comment": "USD per 1,000,000 tokens, as [input, output, cached_input]. Cached price applies to OpenAI prompt-caching (cached tokens are already counted inside prompt_tokens; estimate_cost subtracts them before applying the input price).",
+    "gpt-4o":                 [2.50, 10.00, 1.25],
+    "gpt-4o-2024-08-06":      [2.50, 10.00, 1.25],
+    "gpt-4o-2024-11-20":      [2.50, 10.00, 1.25],
+    "gpt-4o-mini":            [0.15,  0.60, 0.075],
+    "gpt-4o-mini-2024-07-18": [0.15,  0.60, 0.075],
+    "gpt-4.1":                [2.00,  8.00, 0.50],
+    "gpt-4.1-mini":           [0.40,  1.60, 0.10],
+    "gpt-4.1-nano":           [0.10,  0.40, 0.025],
+    "gpt-5.5":                [5.00, 30.00, 0.50],
+    "gpt-5.4-mini":           [0.50,  2.00, 0.05],
+    "o1":                     [15.00, 60.00, 7.50],
+    "o1-mini":                [3.00, 12.00, 1.50],
+    "text-embedding-3-large": [0.13,  0.00, 0.00],
+    "text-embedding-3-small": [0.02,  0.00, 0.00]
+  },
+  "per_call": {
+    "_comment": "USD per call (Cohere bills per rerank search, not per token). Document count inside the call does not change the price.",
+    "rerank-v3.5":              0.002,
+    "rerank-multilingual-v3.0": 0.001,
+    "rerank-english-v3.0":      0.001
+  }
+}

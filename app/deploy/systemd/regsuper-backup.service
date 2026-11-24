@@ -1,0 +1,19 @@
+; Daily backup oneshot — pg_dump → gzip → Hetzner Object Storage.
+; Triggered by regsuper-backup.timer. Plan §15.4.
+
+[Unit]
+Description=Regulatory Super App · daily Postgres dump to S3
+After=network-online.target docker.service
+Wants=network-online.target docker.service
+
+[Service]
+Type=oneshot
+User=regsuper
+Group=regsuper
+EnvironmentFile=/etc/regsuper/secrets.env
+ExecStart=/opt/regsuper/deploy/scripts/backup.sh
+
+; Stop early if anything in the pipe (pg_dump / gzip / aws cli) fails so
+; we surface broken backups via systemd's `failed` state.
+SuccessExitStatus=0
+TimeoutStartSec=15min

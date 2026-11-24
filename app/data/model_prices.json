@@ -1,0 +1,5 @@
+{
+  "_comment": "Operator price OVERRIDES, layered OVER data/model_prices_default.json by observability/pricing.py. Add keys here to override or extend the committed defaults WITHOUT editing code; changes are picked up live (TTL-cached). Same schema: {\"token\": {model: [input, output, cached]}, \"per_call\": {model: usd}}. Left intentionally minimal/empty.",
+  "token": {},
+  "per_call": {}
+}

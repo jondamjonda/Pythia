@@ -1,0 +1,98 @@
+[project]
+name = "regsuper"
+version = "0.0.1"
+description = "Regulatory Super App — Czech/EU regulatory analysis platform (MVP)"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.32",
+  "sqlalchemy[asyncio]>=2.0.36",
+  "asyncpg>=0.30",
+  "alembic>=1.14",
+  "pydantic>=2.10",
+  "pydantic-settings>=2.7",
+  "httpx>=0.28",
+  "structlog>=24.4",
+  "python-json-logger>=2.0",
+  "sse-starlette>=2.1",
+  "anthropic>=0.40",
+  "openai>=1.57",
+  "cohere>=5.13",
+  "lxml>=5.3",
+  "pgvector>=0.3.6",
+  "pymupdf>=1.25",
+  "pymupdf4llm>=0.0.17",
+  "markdown-it-py>=3.0",
+  "boto3>=1.35",
+  "tenacity>=9.0",
+  "python-multipart>=0.0.9",
+  "psutil>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3",
+  "pytest-asyncio>=0.24",
+  "ruff>=0.15,<0.16",  # pinned so CI lints and formats exactly like local
+  "mypy>=1.13",
+]
+calibration = [
+  "streamlit>=1.40",
+  "pandas>=2.2",
+  "matplotlib>=3.9",
+]
+# C3 (T-C3a / AS-1) — the async worker lane. OPTIONAL: the base install does NOT
+# depend on Celery/Redis. `regsuper.analysis.celery_app` runs eager-by-default and
+# falls back to an in-process shim when Celery is absent (default-OFF byte-identical),
+# so the app + the full test-suite work on the base install with no broker. Install
+# this extra (`pip install regsuper[worker]`) only to provision the real broker run
+# behind the deferred `analyze_async` flip (AS-8).
+worker = [
+  "celery>=5.4",
+  "redis>=5.2",
+]
+# C5 (T-CN1 / CN-1) — the Conduit distribution surface (the separate internet-facing
+# MCP + REST process). OPTIONAL: the base install does NOT depend on the `mcp` SDK or
+# Redis. `regsuper.conduit` imports cleanly without either — `mcp` is imported lazily
+# inside `conduit.app.create_conduit_app` / `conduit.mcp_server.build_mcp_server` (only
+# when `conduit_enabled=True`), and Redis is imported lazily inside `conduit.ratelimit`
+# (which otherwise falls back to the in-process token bucket). The main regsuper app
+# never imports `regsuper.conduit`, so neither dep is needed to run the app or its test
+# suite. Install this extra (`pip install regsuper[conduit]`) only to provision the real
+# Conduit process behind the deferred `conduit_enabled` flip (CN-12).
+conduit = [
+  "mcp>=1.2",
+  "redis>=5.2",
+  # OAuth 2.1 resource-server token validation (auth.validate_oauth_token). Imported
+  # lazily inside the validator, so the base install (and the main app + its full test
+  # suite) never depends on it; the OAuth channel is dark/deferred (F-4 certification).
+  "pyjwt[crypto]>=2.9",
+]
+
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "RUF"]
+# E501 = line length (we wrap at 100 but allow long URLs / SQL).
+# RUF001/002/003 = "ambiguous unicode" (en-dashes, smart quotes). These are
+#   deliberate in user-facing strings, docstrings, and the v3 plan text.
+ignore = ["E501", "RUF001", "RUF002", "RUF003", "UP042"]
+# UP042 = "use StrEnum": switching the (str, Enum) classes would change their str()/format() output.
+
+[tool.ruff.lint.per-file-ignores]
+# FastAPI's idiomatic pattern uses Body(...) / File(...) as default values.
+# B008 catches this generically but it's the framework's intended use.
+"src/regsuper/api/*.py" = ["B008"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

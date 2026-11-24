@@ -1,0 +1,51 @@
+=== CORPUS-EXPAND BASELINE — depth standard after +152 SME-relevant acts (2026-06-24) ===
+=== B1a-15 CORPUS DEPTH-STANDARD (per-family gated) ===
+  [PASS] (1) citation-connectedness (per family)
+         worst gated family = EU_SECONDARY 98.9% (target ≥80%); overall 3101/3120 = 99.4%; 3552/5962 external edges resolved; dangling 41 in-corpus (real misses) + 2369 out-of-corpus (breadth)
+         families: STATUTE 2005/2014=100% · EU_SECONDARY 938/948=99% · MINISTERIAL_DECREE 130/130=100% · GOV_REGULATION 10/10=100%[den<50 (reported)] · SOFT_LAW 7/7=100%[den<50 (reported)] · MEASURE_GENERAL_NATURE 6/6=100%[den<50 (reported)] · CONSTITUTIONAL_ORDER 3/3=100%[den<50 (reported)] · REGIONAL_MUNICIPAL_PREDPIS 2/2=100%[den<50 (reported)]
+  [PASS] (2) definition-coverage (cs+en)
+         cs 272/278 = 97.8% · en 27/27 = 100.0% (denominator = acts WITH candidate-definition provisions; target ≥90%/lang)
+         families: STATUTE/cs 218/222=98%[report (per-lang gated)] · MINISTERIAL_DECREE/cs 36/36=100%[report (per-lang gated)] · EU_SECONDARY/en 27/27=100%[report (per-lang gated)] · GOV_REGULATION/cs 15/16=94%[report (per-lang gated)] · SOFT_LAW/cs 2/3=67%[report (per-lang gated)] · CONSTITUTIONAL_ORDER/cs 1/1=100%[report (per-lang gated)]
+  [PASS] (3) trust-completeness (per family · section-precision over structured acts)
+         worst family section-precision = MINISTERIAL_DECREE 98.4% (target ≥70%); section-resolved 41489/41539 of structured-act leaves = 99.9%; flat-act leaves 1480 → safe doc-floor (no section to resolve); total doc-floor 1530/43019; value-legality: 100% resolve to a tier, 0 leaves carry unknown bindingness (→ safe hard-law floor)
+         families: STATUTE 27347/27375=100% · EU_SECONDARY 12528/12528=100% · MINISTERIAL_DECREE 1314/1336=98% · CONSTITUTIONAL_ORDER 158/158=100% · GOV_REGULATION 142/142=100% · MEASURE_GENERAL_NATURE 0/0=—[not-section-capable→doc-floor] · SOFT_LAW 0/0=—[not-section-capable→doc-floor] · REGIONAL_MUNICIPAL_PREDPIS 0/0=—[not-section-capable→doc-floor]
+  [PASS] (4) as_of completeness (per family · valid_from)
+         worst non-SOFT_LAW family = STATUTE 100.0% (target ≥95%); overall 42978/42978 = 100.0%; SOFT_LAW honest-NULL 41/41 excluded from the failure count
+         families: STATUTE 28036/28036=100% · EU_SECONDARY 12528/12528=100% · MINISTERIAL_DECREE 1658/1658=100% · GOV_REGULATION 380/380=100% · REGIONAL_MUNICIPAL_PREDPIS 199/199=100% · CONSTITUTIONAL_ORDER 171/171=100% · MEASURE_GENERAL_NATURE 6/6=100%[den<50 (reported)]
+  [PASS] (5) case-law staging (staged + asserted-absent)
+         400 case-law provisions STAGED + quarantined; 0 mis-hierarchied (must be 0 — else a served-dimension exclusion would leak case law); retrieval-lane isolation asserted by n5 + tests/test_hierarchy_lane.py
+  [HOLD] (6) refusal ≥95%/domain
+         floor_tuned=false — un-tuned (0.5 fallback); HUMAN-GATED (needs a lawyer-labelled eval set; 0 labelled today). live cascade floor source = fallback (0.5). NOT a fabricated pass — HOLD.
+  [PASS] (7) d1/n5/n6 invariants
+         n5(+d1) PASS · n6 PASS
+
+=== PER-DOMAIN (report-only — surfaces a thin domain WITHIN a family; does not gate) ===
+  financial-market       leaves= 16829  section=  99%  as_of= 100%
+  civil                  leaves=  3757  section= 100%  as_of= 100%
+  administrative         leaves=  3071  section=  95%  as_of= 100%
+  civil-procedure        leaves=  2990  section=  97%  as_of= 100%
+  tax                    leaves=  2670  section=  98%  as_of= 100%
+  corporate              leaves=  2240  section=  98%  as_of= 100%
+  criminal               leaves=  2107  section= 100%  as_of= 100%
+  environment            leaves=  1640  section=  86%  as_of= 100%
+  labour                 leaves=  1266  section=  87%  as_of= 100%
+  health                 leaves=  1137  section= 100%  as_of= 100%
+  aml                    leaves=   875  section=  97%  as_of= 100%
+  transport              leaves=   798  section=  93%  as_of= 100%
+  social-security        leaves=   790  section=  99%  as_of= 100%
+  construction           leaves=   764  section=  98%  as_of= 100%
+  data-protection        leaves=   753  section=  93%  as_of= 100%
+  intellectual-property  leaves=   628  section=  93%  as_of= 100%
+  consumer               leaves=   609  section=  73%  as_of= 100%
+  uncategorized          leaves=   586  section=  91%  as_of= 100%
+  procurement            leaves=   553  section=  91%  as_of= 100%
+  real-property          leaves=   427  section=  98%  as_of= 100%
+  public-order           leaves=   389  section=  82%  as_of= 100%
+  energy                 leaves=   304  section=  91%  as_of= 100%
+  competition            leaves=    87  section=  75%  as_of= 100%
+  transparency           leaves=    51  section=  80%  as_of= 100%
+
+=== STANDARD ===
+  gated dimensions: 6 · hold/human-gated: 1
+  overall: ✅ STANDARD MET (refusal HOLD is human-gated, does not flip the verdict)
+(exit code: 0)

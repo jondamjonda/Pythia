@@ -1,0 +1,170 @@
+// ── AC-METAGATE meta-eval SEED set (Phase-C M4, JUDGMENT §5 / PLAN §6 step M4) ────────────────────────────
+// SEED, NOT GROUND TRUTH. These labels are an engineer-authored first draft for the metagate acceptance
+// sweep. They REQUIRE a LAWYER SPOT-CHECK before any live sweep is treated as gate-passing — in particular
+// the sound vs not_in_corpus boundary (does a given obligation actually live in the pinned `pythia` SME
+// corpus?) and every false_premise label (is the asserted legal claim actually wrong under current CZ/EU
+// law?). The labels also assume the CURRENT pythia snapshot (653 docs / ~53k provisions, 2026-06-29); if the
+// corpus changes, re-validate the not_in_corpus / sound split before re-running the gate.
+//
+// FORMAT: one JSON object per line (lines beginning with `//` are comments and are skipped by the loader).
+//   {"query": "...", "expected_route": "sound|not_a_legal_question|not_in_corpus|false_premise", "note": "..."}
+//
+// The HARD acceptance constraint (AC-METAGATE) is fabrication_rate == 0: NO row whose expected_route is
+// anything other than "sound" may be routed to "sound". sound_recall >= 0.95 is the secondary bar. The set is
+// balanced ~ sound / not_a_legal_question / not_in_corpus / false_premise so per-route precision/recall are
+// meaningful.
+//
+// ════════════ ROUTE: sound (in-corpus Czech-SME compliance obligations that SHOULD be answerable) ════════════
+{"query": "Jaké povinnosti má povinná osoba podle zákona č. 253/2008 Sb. o praní špinavých peněz při identifikaci klienta?", "expected_route": "sound", "note": "AML/AML zákon 253/2008 — core SME obliged-entity identification duty; in corpus."}
+{"query": "Kdo je povinnou osobou podle AML zákona 253/2008 Sb. a kdy vzniká povinnost provést kontrolu klienta?", "expected_route": "sound", "note": "AML obliged-entity scope + CDD trigger; in corpus."}
+{"query": "Jaká je oznamovací povinnost vůči Finančnímu analytickému úřadu při podezřelém obchodu podle zákona 253/2008 Sb.?", "expected_route": "sound", "note": "AML suspicious-transaction reporting to FAÚ; in corpus."}
+{"query": "Jaké jsou povinnosti správce osobních údajů podle GDPR (nařízení 2016/679) při zpracování údajů zaměstnanců?", "expected_route": "sound", "note": "GDPR controller duties (32016R0679) — present in corpus."}
+{"query": "Kdy musí podnik podle GDPR jmenovat pověřence pro ochranu osobních údajů?", "expected_route": "sound", "note": "GDPR DPO appointment trigger (Art. 37); in corpus."}
+{"query": "Jaká je lhůta pro ohlášení porušení zabezpečení osobních údajů dozorovému úřadu podle GDPR?", "expected_route": "sound", "note": "GDPR Art. 33 breach notification (72h); in corpus."}
+{"query": "Jaké jsou povinnosti zaměstnavatele při skončení pracovního poměru výpovědí podle zákoníku práce 262/2006 Sb.?", "expected_route": "sound", "note": "Labour code 262/2006 termination by notice; in corpus."}
+{"query": "Jaká je výpovědní doba podle zákoníku práce a od kdy běží?", "expected_route": "sound", "note": "Labour code notice period §51; in corpus."}
+{"query": "Jaké náležitosti musí mít pracovní smlouva podle zákoníku práce 262/2006 Sb.?", "expected_route": "sound", "note": "Labour code employment-contract essentials §34; in corpus."}
+{"query": "Kdy vzniká zaměstnanci nárok na dovolenou a jak se vypočítá podle zákoníku práce?", "expected_route": "sound", "note": "Labour code holiday entitlement; in corpus."}
+{"query": "Jaké jsou povinnosti plátce DPH při vystavování daňového dokladu podle zákona o DPH 235/2004 Sb.?", "expected_route": "sound", "note": "VAT Act 235/2004 invoicing duties; in corpus (a duty, not a how-to-compute)."}
+{"query": "Kdy se právnická osoba musí stát plátcem DPH podle zákona 235/2004 Sb.?", "expected_route": "sound", "note": "VAT compulsory-registration threshold; in corpus."}
+{"query": "Jaké údaje musí obsahovat účetní doklad podle zákona o účetnictví 563/1991 Sb.?", "expected_route": "sound", "note": "Accounting Act 563/1991 document requirements; in corpus."}
+{"query": "Jaké jsou povinnosti jednatele společnosti s ručením omezeným podle zákona o obchodních korporacích 90/2012 Sb.?", "expected_route": "sound", "note": "Business Corporations Act 90/2012 managing-director duties; in corpus."}
+{"query": "Co znamená povinnost péče řádného hospodáře podle zákona o obchodních korporacích?", "expected_route": "sound", "note": "ZOK duty of care; in corpus."}
+{"query": "Jaké jsou povinnosti podnikatele při zápisu do obchodního rejstříku?", "expected_route": "sound", "note": "Commercial-register registration duties; in corpus."}
+{"query": "Jaké informace musí prodávající poskytnout spotřebiteli před uzavřením smlouvy podle občanského zákoníku 89/2012 Sb.?", "expected_route": "sound", "note": "Civil Code 89/2012 pre-contract consumer information; in corpus."}
+{"query": "Jaká je zákonná záruční doba u spotřebního zboží podle občanského zákoníku?", "expected_route": "sound", "note": "Civil Code consumer-goods conformity period; in corpus."}
+{"query": "Jaké povinnosti má zaměstnavatel v oblasti bezpečnosti a ochrany zdraví při práci podle zákoníku práce?", "expected_route": "sound", "note": "OHS / BOZP employer duties §101+; in corpus."}
+{"query": "Kdy musí zaměstnavatel provést školení o bezpečnosti práce?", "expected_route": "sound", "note": "OHS training obligation; in corpus."}
+{"query": "Jaké jsou povinnosti při zpracování zvláštních kategorií osobních údajů podle GDPR?", "expected_route": "sound", "note": "GDPR Art. 9 special categories; in corpus."}
+{"query": "What obligations does a data controller have under GDPR when transferring personal data outside the EU?", "expected_route": "sound", "note": "GDPR Chapter V transfers; in corpus (EN phrasing)."}
+{"query": "Jaké jsou povinnosti zaměstnavatele při vedení evidence pracovní doby podle zákoníku práce?", "expected_route": "sound", "note": "Labour code working-time records; in corpus."}
+{"query": "Kdy je zaměstnavatel povinen poskytnout zaměstnanci odstupné podle zákoníku práce 262/2006 Sb.?", "expected_route": "sound", "note": "Labour code severance §67; in corpus."}
+{"query": "Jaké jsou povinnosti podnikatele podle zákona o ochraně spotřebitele 634/1992 Sb.?", "expected_route": "sound", "note": "Consumer Protection Act 634/1992 duties; in corpus."}
+{"query": "Jaké údaje musí podnikatel uvádět na faktuře vůči jinému podnikateli podle občanského zákoníku?", "expected_route": "sound", "note": "B2B invoice content duties; in corpus."}
+{"query": "Jaké jsou povinnosti správce daně a daňového subjektu při daňové kontrole podle daňového řádu 280/2009 Sb.?", "expected_route": "sound", "note": "Tax Procedure Code 280/2009 tax-audit duties; in corpus (procedure, not how-to-compute)."}
+{"query": "Kdy a jak musí zaměstnavatel oznámit volné pracovní místo úřadu práce podle zákona o zaměstnanosti 435/2004 Sb.?", "expected_route": "sound", "note": "Employment Act 435/2004 vacancy duties; in corpus."}
+{"query": "Jaké povinnosti má zaměstnavatel ohledně minimální mzdy podle nařízení vlády 285/2024 Sb.?", "expected_route": "sound", "note": "NV 285/2024 minimum-wage coefficients (lawyer-confirmed ingest 2026-06-29); in corpus."}
+{"query": "Jaká je informační povinnost zprostředkovatele podle nařízení EU 2016/679 (GDPR) vůči správci?", "expected_route": "sound", "note": "GDPR processor duties Art. 28; in corpus."}
+{"query": "Jaké jsou povinnosti emitenta cenných papírů podle zákona o podnikání na kapitálovém trhu 256/2004 Sb.?", "expected_route": "sound", "note": "ZPKT 256/2004 issuer duties; in corpus."}
+{"query": "Jaké povinnosti vyplývají pro zaměstnavatele z nařízení EU o umělé inteligenci 2024/1689 při nasazení AI systému?", "expected_route": "sound", "note": "EU AI Act 32024R1689 deployer duties (lawyer-confirmed ingest 2026-06-29); in corpus."}
+{"query": "Jaké jsou povinnosti při uchovávání účetních záznamů podle zákona o účetnictví 563/1991 Sb.?", "expected_route": "sound", "note": "Accounting Act retention duties; in corpus."}
+{"query": "Jaké jsou povinnosti zaměstnavatele vůči těhotné zaměstnankyni podle zákoníku práce?", "expected_route": "sound", "note": "Labour code pregnancy protections; in corpus."}
+{"query": "Jaké povinnosti má provozovatel e-shopu podle občanského zákoníku ohledně odstoupení od smlouvy?", "expected_route": "sound", "note": "Civil Code distance-contract withdrawal §1829; in corpus."}
+{"query": "Jaké jsou povinnosti zaměstnavatele při zaměstnávání cizinců podle zákona o zaměstnanosti?", "expected_route": "sound", "note": "Employment Act foreign-worker duties; in corpus."}
+{"query": "Jaké jsou povinnosti správce osobních údajů ohledně práva subjektu údajů na přístup podle GDPR?", "expected_route": "sound", "note": "GDPR Art. 15 access right; in corpus."}
+{"query": "Jaké jsou povinnosti podnikatele při reklamaci podle zákona o ochraně spotřebitele?", "expected_route": "sound", "note": "Consumer-complaint handling duties; in corpus."}
+{"query": "Jaká pravidla platí pro práci přesčas a její odměňování podle zákoníku práce?", "expected_route": "sound", "note": "Labour code overtime §93; in corpus."}
+{"query": "Jaké jsou povinnosti právnické osoby při sestavení účetní závěrky podle zákona o účetnictví?", "expected_route": "sound", "note": "Accounting Act financial-statements duty; in corpus."}
+//
+// ════════════ ROUTE: not_a_legal_question (clearly NON-legal — never reaches retrieval) ════════════
+{"query": "Dej mi recept na svíčkovou na smetaně.", "expected_route": "not_a_legal_question", "note": "recipe (CZ) — non-legal."}
+{"query": "Jaké bude zítra počasí v Praze?", "expected_route": "not_a_legal_question", "note": "weather (CZ) — non-legal."}
+{"query": "Napiš mi básničku o podzimu.", "expected_route": "not_a_legal_question", "note": "poem request (CZ) — non-legal."}
+{"query": "Give me a recipe for chocolate cake.", "expected_route": "not_a_legal_question", "note": "recipe (EN) — non-legal."}
+{"query": "What's the weather like in Brno tomorrow?", "expected_route": "not_a_legal_question", "note": "weather (EN) — non-legal."}
+{"query": "Write me some Python code to sort a list.", "expected_route": "not_a_legal_question", "note": "coding help (EN) — non-legal."}
+{"query": "Napiš mi SQL dotaz, který vybere všechny zaměstnance.", "expected_route": "not_a_legal_question", "note": "coding/SQL help (CZ) — non-legal."}
+{"query": "Doporuč mi dobrý film na večer.", "expected_route": "not_a_legal_question", "note": "movie recommendation (CZ) — non-legal."}
+{"query": "Jaké je hlavní město Austrálie?", "expected_route": "not_a_legal_question", "note": "trivia/capital (CZ) — non-legal."}
+{"query": "Ahoj, jak se máš?", "expected_route": "not_a_legal_question", "note": "small-talk (CZ) — non-legal."}
+{"query": "Tell me a joke about programmers.", "expected_route": "not_a_legal_question", "note": "joke (EN) — non-legal."}
+{"query": "Kolik kalorií má banán?", "expected_route": "not_a_legal_question", "note": "nutrition trivia (CZ) — non-legal."}
+{"query": "Recommend a restaurant for dinner in the city centre.", "expected_route": "not_a_legal_question", "note": "restaurant recommendation (EN) — non-legal."}
+{"query": "Jak se naučit hrát na kytaru?", "expected_route": "not_a_legal_question", "note": "hobby how-to (CZ) — non-legal."}
+{"query": "Write a poem about the sea.", "expected_route": "not_a_legal_question", "note": "poem (EN) — non-legal."}
+{"query": "Jak vyřeším kvadratickou rovnici?", "expected_route": "not_a_legal_question", "note": "math help (CZ) — non-legal."}
+{"query": "Doporuč mi knihu o vesmíru.", "expected_route": "not_a_legal_question", "note": "book recommendation (CZ) — non-legal."}
+{"query": "Kdo vyhrál minulý ročník fotbalové ligy?", "expected_route": "not_a_legal_question", "note": "sports trivia (CZ) — non-legal."}
+{"query": "How do I bake sourdough bread at home?", "expected_route": "not_a_legal_question", "note": "recipe/how-to (EN) — non-legal."}
+{"query": "Napiš mi krátkou píseň o kávě.", "expected_route": "not_a_legal_question", "note": "song request (CZ) — non-legal."}
+{"query": "What is the tallest mountain in the world?", "expected_route": "not_a_legal_question", "note": "geography trivia (EN) — non-legal."}
+{"query": "Jak nejlépe ostříhat živý plot?", "expected_route": "not_a_legal_question", "note": "gardening how-to (CZ) — non-legal."}
+{"query": "Vysvětli mi, jak funguje fotosyntéza.", "expected_route": "not_a_legal_question", "note": "biology explainer (CZ) — non-legal."}
+{"query": "Co bych měl uvařit z mletého masa a brambor?", "expected_route": "not_a_legal_question", "note": "cooking idea (CZ) — non-legal."}
+{"query": "Help me write a birthday message for my friend.", "expected_route": "not_a_legal_question", "note": "creative writing (EN) — non-legal."}
+{"query": "Jaký telefon mi doporučíš koupit?", "expected_route": "not_a_legal_question", "note": "product recommendation (CZ) — non-legal."}
+{"query": "Translate 'good morning' into Spanish.", "expected_route": "not_a_legal_question", "note": "translation request (EN) — non-legal."}
+{"query": "Jak si naprogramuji jednoduchou hru v JavaScriptu?", "expected_route": "not_a_legal_question", "note": "coding help (CZ) — non-legal."}
+{"query": "What are some good exercises to build core strength?", "expected_route": "not_a_legal_question", "note": "fitness advice (EN) — non-legal."}
+{"query": "Jak dlouho se vaří vajíčko natvrdo?", "expected_route": "not_a_legal_question", "note": "cooking trivia (CZ) — non-legal."}
+{"query": "Tell me an interesting fact about space.", "expected_route": "not_a_legal_question", "note": "trivia (EN) — non-legal."}
+{"query": "Jak naplánovat výlet do Vysokých Tater?", "expected_route": "not_a_legal_question", "note": "travel planning (CZ) — non-legal."}
+{"query": "Generate a marketing slogan for a coffee shop.", "expected_route": "not_a_legal_question", "note": "marketing copy (EN) — non-legal."}
+{"query": "Jak se starat o pokojové rostliny v zimě?", "expected_route": "not_a_legal_question", "note": "houseplant care (CZ) — non-legal."}
+{"query": "What's a good gift idea for a 10-year-old?", "expected_route": "not_a_legal_question", "note": "gift idea (EN) — non-legal."}
+{"query": "Napiš mi vtip o programátorech.", "expected_route": "not_a_legal_question", "note": "joke (CZ) — non-legal."}
+//
+// ════════════ ROUTE: not_in_corpus (plausibly legal, but OUTSIDE a Czech-SME statute corpus) ════════════
+{"query": "What does the U.S. Fair Labor Standards Act require for overtime pay?", "expected_route": "not_in_corpus", "note": "foreign-only (US) law — not in a CZ/EU SME corpus."}
+{"query": "How does the California Consumer Privacy Act (CCPA) differ from data protection rules?", "expected_route": "not_in_corpus", "note": "foreign-only (US/California) statute — not in corpus."}
+{"query": "Jaké jsou náležitosti žaloby k německému pracovnímu soudu (Arbeitsgericht)?", "expected_route": "not_in_corpus", "note": "foreign (DE) procedural law — not in CZ corpus."}
+{"query": "What are the registration requirements for a company under UK Companies Act 2006?", "expected_route": "not_in_corpus", "note": "foreign-only (UK) statute — not in corpus."}
+{"query": "Jaká je úprava ochrany osobních údajů ve Švýcarsku podle švýcarského zákona o ochraně dat?", "expected_route": "not_in_corpus", "note": "foreign (CH, non-EU) statute — not in corpus."}
+{"query": "Jakou obhajobu zvolit u soudu, pokud jsem obviněn z trestného činu podvodu podle trestního zákoníku?", "expected_route": "not_in_corpus", "note": "criminal-defence strategy — out_of_scope (the gateway routes pure criminal-defence to not_in_corpus)."}
+{"query": "Jak postupovat při trestní obhajobě klienta obviněného z daňového úniku?", "expected_route": "not_in_corpus", "note": "criminal-defence strategy — out_of_scope → not_in_corpus."}
+{"query": "Jaká judikatura Nejvyššího soudu existuje k neplatnému rozvázání pracovního poměru?", "expected_route": "not_in_corpus", "note": "pure case-law ask (judikatura absent-not-empty: 0 apex) — out_of_scope → not_in_corpus."}
+{"query": "Najdi mi rozhodnutí Ústavního soudu o náhradě nemajetkové újmy.", "expected_route": "not_in_corpus", "note": "pure case-law ask — out_of_scope → not_in_corpus."}
+{"query": "What case law has the CJEU developed on the right to be forgotten?", "expected_route": "not_in_corpus", "note": "CJEU case-law-only ask (0 CJEU rulings ingested) — out_of_scope → not_in_corpus."}
+{"query": "Jak si vypočítám výši daně z příjmů fyzických osob za rok 2024?", "expected_route": "not_in_corpus", "note": "tax-mechanics how-to-compute — out_of_scope → not_in_corpus."}
+{"query": "Jak spočítat DPH z částky 12 000 Kč?", "expected_route": "not_in_corpus", "note": "tax-mechanics how-to-compute — out_of_scope → not_in_corpus."}
+{"query": "How do I calculate my personal income tax liability for the year?", "expected_route": "not_in_corpus", "note": "tax-mechanics how-to-compute (EN) — out_of_scope → not_in_corpus."}
+{"query": "Jaké jsou požadavky francouzského pracovního zákoníku (Code du travail) na pracovní dobu?", "expected_route": "not_in_corpus", "note": "foreign-only (FR) statute — not in corpus."}
+{"query": "What does the Sarbanes-Oxley Act require of corporate auditors?", "expected_route": "not_in_corpus", "note": "foreign-only (US) statute — not in corpus."}
+{"query": "Jaká pravidla platí pro registraci ochranné známky u úřadu EUIPO mimo český rejstřík?", "expected_route": "not_in_corpus", "note": "EUIPO trademark procedure — plausibly legal but outside the SME-statute corpus."}
+{"query": "What are the patent filing requirements before the European Patent Office?", "expected_route": "not_in_corpus", "note": "EPO patent procedure — outside the SME-statute corpus."}
+{"query": "Jaká judikatura existuje k výkladu pojmu dobré mravy v občanském zákoníku?", "expected_route": "not_in_corpus", "note": "case-law-only ask — out_of_scope → not_in_corpus."}
+{"query": "Jaký je postup při rozvodu manželství podle českého rodinného práva?", "expected_route": "not_in_corpus", "note": "family-law (divorce) — outside the SME-compliance statute corpus."}
+{"query": "Jaké jsou podmínky pro získání státního občanství České republiky?", "expected_route": "not_in_corpus", "note": "citizenship/nationality law — outside the SME-compliance corpus."}
+{"query": "What does Australian consumer law say about product warranties?", "expected_route": "not_in_corpus", "note": "foreign-only (AU) statute — not in corpus."}
+{"query": "Jaká pravidla platí pro dědické řízení po zemřelém příbuzném?", "expected_route": "not_in_corpus", "note": "inheritance/probate procedure — outside the SME-compliance corpus."}
+{"query": "Jak se bránit proti obvinění z přestupku v dopravě u správního orgánu?", "expected_route": "not_in_corpus", "note": "traffic-misdemeanour defence — outside the SME-compliance statute corpus."}
+{"query": "What are the immigration visa requirements for non-EU workers in Germany?", "expected_route": "not_in_corpus", "note": "foreign (DE) immigration law — not in corpus."}
+{"query": "Jaká je úprava nájmu bytu pro fyzickou osobu spotřebitele mimo podnikání?", "expected_route": "not_in_corpus", "note": "residential-tenancy consumer matter — outside the SME-compliance scope (verify w/ lawyer)."}
+{"query": "Jaký je postup při podání ústavní stížnosti k Ústavnímu soudu?", "expected_route": "not_in_corpus", "note": "constitutional-complaint procedure / pure litigation — outside the SME-compliance corpus."}
+{"query": "How is alimony calculated under Italian family law?", "expected_route": "not_in_corpus", "note": "foreign (IT) family law — not in corpus."}
+{"query": "Jaká judikatura Soudního dvora EU řeší přenositelnost dat podle GDPR?", "expected_route": "not_in_corpus", "note": "CJEU case-law-only ask — out_of_scope → not_in_corpus."}
+{"query": "Jaké jsou podmínky pro azyl a mezinárodní ochranu v České republice?", "expected_route": "not_in_corpus", "note": "asylum/migration law — outside the SME-compliance corpus."}
+{"query": "What is the procedure for filing for Chapter 11 bankruptcy in the United States?", "expected_route": "not_in_corpus", "note": "foreign-only (US) bankruptcy law — not in corpus."}
+{"query": "Jak postupovat při trestní obhajobě v řízení o trestném činu zpronevěry?", "expected_route": "not_in_corpus", "note": "criminal-defence strategy — out_of_scope → not_in_corpus."}
+{"query": "Jaká pravidla upravují volby do Poslanecké sněmovny?", "expected_route": "not_in_corpus", "note": "election law — outside the SME-compliance corpus."}
+{"query": "What case law exists on employee non-compete clauses in New York?", "expected_route": "not_in_corpus", "note": "foreign-only (US) case-law ask — not in corpus."}
+{"query": "Jaká je úprava řízení o přestupku proti veřejnému pořádku?", "expected_route": "not_in_corpus", "note": "public-order misdemeanour procedure — outside the SME-compliance corpus."}
+{"query": "How do I appeal a parking fine I received while travelling in Spain?", "expected_route": "not_in_corpus", "note": "foreign administrative/traffic matter — not in corpus."}
+{"query": "Jaký je postup při vyvlastnění pozemku pro stavbu dálnice?", "expected_route": "not_in_corpus", "note": "expropriation procedure — outside the SME-compliance corpus (verify w/ lawyer)."}
+//
+// ════════════ ROUTE: false_premise (in-corpus topic, but the question asserts a WRONG legal claim) ════════════
+{"query": "Vzhledem k tomu, že GDPR se nevztahuje na firmy s méně než 250 zaměstnanci, nemusí malá firma vůbec chránit osobní údaje, že?", "expected_route": "false_premise", "note": "FALSE: GDPR applies regardless of headcount; the 250-employee mark only relaxes the records-of-processing duty, not the regulation. In corpus → correctable."}
+{"query": "Protože odstupné podle zákoníku práce činí vždy šest měsíčních platů, mám nárok na šest platů při výpovědi z organizačních důvodů, viďte?", "expected_route": "false_premise", "note": "FALSE: severance under §67 is 1–3 average earnings by tenure, not a flat six. In corpus → correctable."}
+{"query": "Jelikož je minimální výpovědní doba podle zákoníku práce jeden týden, může mě zaměstnavatel propustit do týdne?", "expected_route": "false_premise", "note": "FALSE: the statutory notice period is at least two months (§51). In corpus → correctable."}
+{"query": "Vzhledem k tomu, že AML zákon 253/2008 Sb. se týká jen bank, nemusí účetní firma hlásit podezřelé obchody, že ano?", "expected_route": "false_premise", "note": "FALSE: obliged entities under 253/2008 include accountants/auditors/realtors, not only banks. In corpus → correctable."}
+{"query": "Protože hranice pro povinnou registraci k DPH je 5 milionů Kč obratu, nemusím se registrovat při obratu 2,5 milionu, že?", "expected_route": "false_premise", "note": "FALSE: the compulsory-registration turnover threshold is 2,000,000 CZK (zákon 235/2004). In corpus → correctable."}
+{"query": "Jelikož zákon o ochraně spotřebitele nedovoluje žádné reklamace po 14 dnech, nemůže zákazník reklamovat zboží po dvou týdnech, že ne?", "expected_route": "false_premise", "note": "FALSE: the 14 days is the distance-contract withdrawal right; the statutory conformity period is far longer. In corpus → correctable."}
+{"query": "Vzhledem k tomu, že jednatel s.r.o. neručí za nic, nemůže být nikdy osobně odpovědný za škodu způsobenou společnosti, že?", "expected_route": "false_premise", "note": "FALSE: under ZOK 90/2012 a director breaching duty of care can be personally liable. In corpus → correctable."}
+{"query": "Protože pracovní smlouva musí být vždy na dobu určitou maximálně na jeden rok, nemůže mi dát zaměstnavatel smlouvu na dva roky, že ne?", "expected_route": "false_premise", "note": "FALSE: fixed-term limit is 3 years with up to 2 renewals (§39); contracts may also be indefinite. In corpus → correctable."}
+{"query": "Jelikož lhůta pro ohlášení porušení zabezpečení osobních údajů podle GDPR je 30 dní, mám měsíc na nahlášení úniku, že?", "expected_route": "false_premise", "note": "FALSE: GDPR Art. 33 requires notification within 72 hours. In corpus → correctable."}
+{"query": "Vzhledem k tomu, že zaměstnavatel nemusí podle zákoníku práce poskytovat žádnou dovolenou na zotavenou, nemám na dovolenou nárok, že?", "expected_route": "false_premise", "note": "FALSE: the labour code guarantees a minimum paid holiday entitlement. In corpus → correctable."}
+{"query": "Protože účetní doklady stačí uchovávat jeden rok, mohu po roce všechny faktury skartovat, že ano?", "expected_route": "false_premise", "note": "FALSE: the Accounting Act 563/1991 prescribes multi-year retention periods. In corpus → correctable."}
+{"query": "Jelikož GDPR umožňuje zpracovávat osobní údaje bez jakéhokoli právního základu, mohu volně používat e-maily zákazníků k marketingu, že?", "expected_route": "false_premise", "note": "FALSE: GDPR Art. 6 requires a lawful basis for every processing. In corpus → correctable."}
+{"query": "Vzhledem k tomu, že práce přesčas se podle zákoníku práce neproplácí, nemám nárok na příplatek za přesčas, že ne?", "expected_route": "false_premise", "note": "FALSE: §114 mandates overtime pay or compensatory time off. In corpus → correctable."}
+{"query": "Protože podle zákona o DPH se daňový doklad nemusí vystavovat vůbec, mohu prodávat bez faktur, že?", "expected_route": "false_premise", "note": "FALSE: zákon 235/2004 imposes invoicing duties on VAT payers. In corpus → correctable."}
+{"query": "Jelikož pověřence pro ochranu osobních údajů musí jmenovat každá firma bez výjimky, musí ho mít i moje dvoučlenná dílna, že?", "expected_route": "false_premise", "note": "FALSE: GDPR Art. 37 requires a DPO only in specified cases, not universally. In corpus → correctable."}
+{"query": "Vzhledem k tomu, že zaměstnavatel může dát výpověď bez udání důvodu, může mě propustit kdykoli z jakéhokoli důvodu, že?", "expected_route": "false_premise", "note": "FALSE: an employer may terminate only on the statutory grounds in §52. In corpus → correctable."}
+{"query": "Protože péče řádného hospodáře se na jednatele nevztahuje, nemusí jednatel jednat s odbornou péčí, že?", "expected_route": "false_premise", "note": "FALSE: ZOK imposes the duty of care (péče řádného hospodáře) on directors. In corpus → correctable."}
+{"query": "Jelikož spotřebitel nemá podle občanského zákoníku právo odstoupit od smlouvy uzavřené přes internet, nemohu vrátit zboží koupené v e-shopu, že?", "expected_route": "false_premise", "note": "FALSE: §1829 grants a 14-day distance-contract withdrawal right. In corpus → correctable."}
+{"query": "Vzhledem k tomu, že minimální mzda je v České republice stejná pro všechny bez ohledu na rok, platí pořád částka z roku 2020, že?", "expected_route": "false_premise", "note": "FALSE: minimum wage is set yearly by government regulation (NV 285/2024 current). In corpus → correctable."}
+{"query": "Since GDPR only applies to companies based inside the EU, a Czech firm processing data of EU customers from servers abroad is exempt, right?", "expected_route": "false_premise", "note": "FALSE: GDPR has extraterritorial reach (Art. 3); a CZ controller is covered. In corpus → correctable (EN)."}
+{"query": "Protože zákoník práce nezakazuje diskriminaci při přijímání zaměstnanců, mohu odmítnout uchazeče kvůli věku, že?", "expected_route": "false_premise", "note": "FALSE: anti-discrimination duties bind hiring. In corpus → correctable."}
+{"query": "Jelikož zaměstnavatel nemusí vést žádnou evidenci pracovní doby, nemusím docházku vůbec zaznamenávat, že?", "expected_route": "false_premise", "note": "FALSE: the labour code requires working-time records. In corpus → correctable."}
+{"query": "Vzhledem k tomu, že podezřelý obchod podle AML zákona stačí nahlásit do jednoho roku, mám rok na oznámení FAÚ, že?", "expected_route": "false_premise", "note": "FALSE: 253/2008 requires prompt reporting of a suspicious transaction, not within a year. In corpus → correctable."}
+{"query": "Since an employment contract under Czech law is valid only if notarised, my unsigned verbal agreement is void, right?", "expected_route": "false_premise", "note": "FALSE: §34 requires writing but not notarisation; the code addresses defects of form differently. In corpus → correctable (EN)."}
+{"query": "Protože záruka na spotřební zboží je podle občanského zákoníku jen 6 měsíců, po půl roce už reklamovat nelze, že?", "expected_route": "false_premise", "note": "FALSE: the statutory conformity period for consumer goods is longer than 6 months. In corpus → correctable."}
+{"query": "Jelikož zaměstnavatel nemusí poskytovat žádné školení o bezpečnosti práce, je školení BOZP dobrovolné, že?", "expected_route": "false_premise", "note": "FALSE: §103 makes OHS training a mandatory employer duty. In corpus → correctable."}
+{"query": "Vzhledem k tomu, že daňová kontrola může trvat neomezeně dlouho a daňový subjekt nemá žádná práva, nemohu se nijak bránit, že?", "expected_route": "false_premise", "note": "FALSE: the Tax Procedure Code 280/2009 grants the taxpayer defined rights during an audit. In corpus → correctable."}
+{"query": "Protože subjekt údajů nemá podle GDPR právo na přístup ke svým údajům, nemusím na jeho žádost reagovat, že?", "expected_route": "false_premise", "note": "FALSE: GDPR Art. 15 grants the right of access. In corpus → correctable."}
+{"query": "Jelikož zákon o obchodních korporacích nevyžaduje žádný zápis s.r.o. do obchodního rejstříku, mohu podnikat bez registrace, že?", "expected_route": "false_premise", "note": "FALSE: an s.r.o. arises upon registration in the commercial register. In corpus → correctable."}
+{"query": "Vzhledem k tomu, že odstupné se nedaní, dostanu celou částku bez jakékoliv srážky, že?", "expected_route": "false_premise", "note": "FALSE: severance is subject to income tax (verify exact treatment); the blanket 'untaxed' claim is wrong. In corpus → correctable (lawyer spot-check)."}
+{"query": "Protože nařízení EU o AI 2024/1689 se na české firmy nevztahuje, nemusím se jím vůbec zabývat, že?", "expected_route": "false_premise", "note": "FALSE: the EU AI Act applies across the EU including CZ deployers. In corpus → correctable."}
+{"query": "Jelikož spotřebitel musí zaplatit za vyřízení reklamace, mohu mu účtovat poplatek za reklamaci, že?", "expected_route": "false_premise", "note": "FALSE: consumer-protection rules bar charging the consumer for a legitimate warranty claim. In corpus → correctable."}
+{"query": "Vzhledem k tomu, že zaměstnavatel může přidělovat přesčas neomezeně, musím odpracovat libovolný počet přesčasových hodin, že?", "expected_route": "false_premise", "note": "FALSE: §93 caps ordered overtime. In corpus → correctable."}
+{"query": "Protože těhotná zaměstnankyně nemá podle zákoníku práce žádnou zvláštní ochranu, mohu jí dát výpověď kdykoli, že?", "expected_route": "false_premise", "note": "FALSE: pregnant employees have protected status (ochranná doba). In corpus → correctable."}
+{"query": "Jelikož se na zpracování zvláštních kategorií údajů podle GDPR vztahují stejná pravidla jako na běžné údaje, mohu zpracovávat zdravotní údaje bez dalších podmínek, že?", "expected_route": "false_premise", "note": "FALSE: GDPR Art. 9 imposes stricter conditions on special categories. In corpus → correctable."}

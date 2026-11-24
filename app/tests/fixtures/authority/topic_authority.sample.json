@@ -1,0 +1,17 @@
+{
+  "_note": "DRAFT / sample — advocate-review-pending. Maps an obligation/topic KEY to the competent authority TYPE(s) (authority_vocab tags). NOT exhaustive and NOT legal advice; a lawyer must validate topic->authority competence before this drives any customer-facing 'kam podat' output. Order within a list is priority (most-directly-competent first).",
+  "topics": {
+    "dan_z_prijmu": ["financni_urad"],
+    "dph": ["financni_urad"],
+    "dan_silnicni": ["financni_urad"],
+    "socialni_pojisteni": ["ossz"],
+    "nemocenske_pojisteni": ["ossz"],
+    "hygiena_provozovny": ["khs"],
+    "bezpecnost_prace": ["oip"],
+    "pracovni_uraz": ["oip"],
+    "zivnostenske_opravneni": ["zivnostensky_urad"],
+    "ochrana_osobnich_udaju": ["uoou"],
+    "gdpr": ["uoou"],
+    "zamestnavani": ["ossz", "oip", "financni_urad"]
+  }
+}

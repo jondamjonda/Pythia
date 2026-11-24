@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "purpose": "VL-F-10 ANNUAL-INSTRUMENT registry — a small, lawyer-reviewable seed of Czech legal instrument FAMILIES that are REISSUED on a periodic (annual) cadence. Each family names the LATEST known instrument (external_id + its valid_to = the expected-reissue horizon) and the cadence. Consumed by pythia/monitoring/annual_check.py::run_annual_check to ALERT when the latest instrument has expired AND no successor was ingested into the live corpus (silent staleness). PURE data; no code. Small + clearly a SEED — expand under lawyer review.",
+    "status": "DRAFT SEED — LAWYER/OPERATOR REVIEW before expanding beyond the seeded families.",
+    "valid_to_semantics": "CRITICAL: an annual instrument's valid_to is an EXPECTED-REISSUE horizon, NOT a repeal date. A naive daily job keying off taxonomy._temporal_status(valid_to <= today => REPEALED) would FALSELY stamp these families REPEALED the day after valid_to. run_annual_check NEVER auto-marks REPEALED; it only ALERTS when there is a POSITIVE no-successor finding in the supplied corpus rows (fail-open on unknowns). See the module docstring's 'VL-F-10 AUDIT' block."
+  },
+  "families": [
+    {
+      "family": "cestovni-nahrady",
+      "domain": "labour-employment-osh",
+      "description": "Cestovní náhrady / travel allowances — MPSV vyhláška reissued annually (diet rates «stravné», per-km rates «sazba základní náhrady», fuel prices). The live seeded example.",
+      "latest_external_id": "475/2024",
+      "valid_to": "2026-12-31",
+      "cadence": "annual",
+      "successor_hint": "Expect a new MPSV vyhláška o změně sazeb ... cestovních náhrad for the following year (e.g. a 20xx/20xx external_id)."
+    },
+    {
+      "family": "minimalni-mzda-nv",
+      "domain": "labour-employment-osh",
+      "description": "Minimum-wage nařízení vlády — coefficients / guaranteed-wage tiers set by NV, adjusted (typically) annually.",
+      "latest_external_id": "285/2024",
+      "valid_to": "2026-12-31",
+      "cadence": "annual",
+      "successor_hint": "Expect a new NV o výši minimální mzdy a nejnižších úrovní zaručené mzdy for the following year."
+    },
+    {
+      "family": "stravenkovy-pausal-limit",
+      "domain": "labour-employment-osh",
+      "description": "Stravné-derived meal-allowance / stravenkový paušál upper limit — pinned to the annually-reissued travel-allowance diet rate, so its practical figure goes stale on the same cadence.",
+      "latest_external_id": "475/2024",
+      "valid_to": "2026-12-31",
+      "cadence": "annual",
+      "successor_hint": "Tracks the cestovni-nahrady family's successor vyhláška for the following year."
+    }
+  ]
+}

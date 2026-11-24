@@ -1,0 +1,42 @@
+# Caddy reverse proxy — terminates TLS, forwards /api/* + /internal/* +
+# /admin/* + /health to the local FastAPI on 127.0.0.1:8002.
+#
+# Drop at /etc/caddy/Caddyfile then `sudo systemctl reload caddy`.
+# Caddy fetches Let's Encrypt certs on first boot — no manual ACME steps.
+
+# Replace api.your-domain.example with the real host. If you don't have a
+# domain yet, run:
+#   caddy reverse-proxy --from :443 --to 127.0.0.1:8002
+# for a self-signed dev cert. (Production needs a real DNS A record.)
+
+api.your-domain.example {
+    encode zstd gzip
+
+    # Allow Server-Sent Events (the LogPanel uses /api/projects/{id}/events).
+    # Caddy by default buffers; turn it off for the SSE route.
+    @sse path /api/projects/*/events
+    reverse_proxy @sse 127.0.0.1:8002 {
+        transport http {
+            response_header_timeout 0s
+        }
+        flush_interval -1
+    }
+
+    # Everything else — vanilla reverse proxy with X-Forwarded-* headers.
+    reverse_proxy 127.0.0.1:8002
+
+    # Hard ceiling on request body: 25 MB. The biggest legitimate payload is
+    # a ČNB PDF upload presign request, well under this.
+    request_body {
+        max_size 25MB
+    }
+
+    # Useful headers for downstream (CSP is intentionally permissive at MVP
+    # since the admin pages inline scripts; tighten after Day-14).
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        X-Content-Type-Options    "nosniff"
+        Referrer-Policy           "strict-origin-when-cross-origin"
+        -Server
+    }
+}

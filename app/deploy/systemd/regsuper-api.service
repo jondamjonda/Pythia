@@ -1,0 +1,50 @@
+; Run the Regulatory Super App FastAPI service under systemd on a Hetzner VPS.
+;
+; Place at /etc/systemd/system/regsuper-api.service then:
+;   sudo systemctl daemon-reload
+;   sudo systemctl enable --now regsuper-api
+;
+; Logs land in journald (`journalctl -u regsuper-api -f`) plus the structlog
+; JSON file at $LOG_DIR/app.log.
+
+[Unit]
+Description=Regulatory Super App · FastAPI service
+After=network-online.target docker.service
+Wants=network-online.target docker.service
+
+[Service]
+Type=exec
+User=regsuper
+Group=regsuper
+WorkingDirectory=/opt/regsuper
+EnvironmentFile=/etc/regsuper/secrets.env
+; LEDGER-M26: --workers 1, NOT 2. The lifespan unconditionally starts the
+; single-producer background tasks (system_monitor / resource_guard /
+; pythia_monitor / nexus_poller) in EVERY worker, with no leader guard. Two
+; workers => duplicate `INSERT INTO system_sample`, two host-wide psutil walks,
+; and double polling — which skews the panel stats and violates the
+; single-cpu_percent-caller invariant. Keep this at 1 until a worker-leader
+; guard lands in main.py (owned by the API batch); only then raise the count
+; AND add a separate scheduler unit for the producers.
+ExecStart=/opt/regsuper/.venv/bin/python -m uvicorn regsuper.api.main:app \
+    --host 127.0.0.1 \
+    --port 8002 \
+    --workers 1 \
+    --proxy-headers \
+    --forwarded-allow-ips 127.0.0.1
+Restart=on-failure
+RestartSec=5
+
+; Lock down a bit — the service only writes to its own data + log dirs.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/log/regsuper /var/lib/regsuper
+
+; Generous timeouts: graceful shutdown of an in-flight L2/L3 batch can
+; take 30s while pending OpenAI calls drain.
+TimeoutStopSec=45
+
+[Install]
+WantedBy=multi-user.target

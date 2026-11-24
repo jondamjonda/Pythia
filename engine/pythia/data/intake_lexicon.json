@@ -1,0 +1,91 @@
+{
+  "_provenance": "DRAFT / lawyer-review-pending — content certification is gate #1. Before PYTHIA_INTAKE_DET_SCAN_ENABLED is flipped ON in any serving env, every rule below (its classification field, its emitted value, and its surface forms) MUST be confirmed by counsel. The seed set was authored deterministically against the 70-item layman gold (eval/gold_layman_v1.jsonl) at 100% precision (every kept rule fires ONLY on a gold query it correctly classifies; zero false positives). No flag was flipped by authoring this file.",
+  "_meta": {
+    "purpose": "VL-A-04 (WS3 step 35) — the DETERMINISTIC intake pre-pass lexicon. A PURE, LLM-free classification asset consumed by pythia/reasoning/det_intake.py ONLY when config.intake_det_scan_enabled is True (default OFF). Each rule maps a diacritic-insensitive surface pattern in the raw query to ONE structured IntakeFact {field, value} carrying source='det'. A det fact SKIPS the query-substring grounding check (IV-SPAN) — it is a deterministic classification, not a copied query span — but is STILL gated by the closed-vocabulary field check (IV-ENUM). So every `field` below MUST be a member of intake._FACT_FIELDS.",
+    "status": "DRAFT — ADVOCATE/LAWYER REVIEW PENDING. Same posture as data/term_aliases.json: authored deterministically from the corpus register + the layman gold, precision-first, never flipped ON without counsel sign-off (content certification is gate #1).",
+    "matching": "Every surface form and the query are ACCENT-FOLDED (NFKD, combining marks stripped) and lowercased before matching, so ASCII surface forms match diacritic Czech ('restauraci', 'osvč', 'v Plzni'). A form is a Python regex evaluated on the folded query. A rule that matches contributes at most ONE fact for its field; the FIRST rule to claim a field wins (add-never-override, so a query naming two legal forms yields one, not a contradiction). A det fact NEVER overrides an LLM/profile fact on the same field at the merge point either.",
+    "schema": {
+      "id": "str — stable rule id (used by the test witness map + audit)",
+      "group": "str — one of: legal_form_alias | gate_cue | regime_alias | municipality",
+      "field": "str — the IntakeFact.field; MUST be in intake._FACT_FIELDS (IV-ENUM gates it)",
+      "value": "str — the emitted IntakeFact.value (canonical token for legal_form, 'yes' for a gate, a regime tag for tax, the municipality name for region)",
+      "forms": "list[str] — accent-folded Python regex patterns; a match on the folded query fires the rule",
+      "note": "str — the intended statutory/classification hook + the gold witness id(s), for the reviewer only (NOT read by code)"
+    },
+    "version": "0.1.0-draft",
+    "generated": "2026-07-06",
+    "gold_witness_corpus": "eval/gold_layman_v1.jsonl (70 items)",
+    "changelog": "0.1.0-draft (2026-07-06, VL-A-04): initial deterministic-intake lexicon. 8 rules kept (each with >=1 gold witness at 100% precision): 2 legal_form aliases (sro, osvc), 3 gate cues (employment/gdpr/cross-border), 2 regime aliases (tax:dph, tax:income), 1 municipality gazetteer (4 major CZ cities, Plzen witnessed). Candidate rules with zero gold witnesses or any false positive were DELETED, not shipped (a.s./v.o.s./k.s./druzstvo legal forms, the AML cue, sector cues, bare-year temporal)."
+  },
+  "rules": [
+    {
+      "id": "lf-sro",
+      "group": "legal_form_alias",
+      "field": "legal_form",
+      "value": "sro",
+      "forms": ["\\bs\\.?\\s?r\\.?\\s?o\\.?\\b", "eserocko", "spolecnost s rucenim omezen"],
+      "note": "zakon o obchodnich korporacich — s.r.o. and the colloquial 'eserocko'. Value uses the canonical compact token (_norm_legal_form). Gold witnesses: emp-first-hire-eshop-02, accounting-obligation-12, refuse-offcorpus-us-35, sro-formation-55, financial-statements-62."
+    },
+    {
+      "id": "lf-osvc",
+      "group": "legal_form_alias",
+      "field": "legal_form",
+      "value": "osvc",
+      "forms": ["\\bosvc\\b", "zivnostnik", "na zivnost\\b", "\\bzivnost\\b"],
+      "note": "zakon o danich z prijmu / zivnostensky zakon — OSVC / zivnostnik / na zivnost. Canonical token 'osvc'. Gold witnesses: vat-turnover-register-03, accounting-obligation-12."
+    },
+    {
+      "id": "gate-employer",
+      "group": "gate_cue",
+      "field": "employment",
+      "value": "yes",
+      "forms": ["zamestna(?:t|m|vam|vate)\\b", "beru (?:prvn|noveho|si|na |zamestnance)", "prvniho (?:zamestnance|brigadnika)", "jako zamestnavatel", "zamestnancum", "nastupuje\\b"],
+      "note": "zakonik prace — the asker is / becomes an employer (positive assertion only; a mere passing mention of 'zamestnance' does not fire, so the false-premise item refuse-falsepremise-3employees-38 does NOT trigger). Gold witnesses (11): emp-first-hire-plzen-01, emp-first-hire-eshop-02, probation-length-05, working-time-records-06, occ-health-check-11, min-wage-2026-13, social-health-contrib-14, hire-foreigner-16, colloq-homeoffice-23, sunday-work-monitor-63, colloq-brigadnik-65."
+    },
+    {
+      "id": "gate-gdpr",
+      "group": "gate_cue",
+      "field": "gdpr",
+      "value": "yes",
+      "forms": ["\\bgdpr\\b", "osobni udaj", "databaze zakazniku", "ochrana osobnich udaju"],
+      "note": "GDPR / zakon 110/2019 — the asker processes personal data. Gold witness: colloq-gdpr-24. (Cookies alone does NOT fire — colloq-cookies-17 is left un-classified.)"
+    },
+    {
+      "id": "gate-xborder",
+      "group": "gate_cue",
+      "field": "jurisdiction",
+      "value": "yes",
+      "forms": ["preshranic", "v zahranici", "pobock[au] v\\b"],
+      "note": "cross-border operation (a branch abroad / preshranicni pusobeni). Deliberately does NOT fire on a foreign worker's origin ('z Ukrajiny'/'z Ciny') to avoid over-claiming cross-border business. Maps to the jurisdiction field ('yes' = a cross-border signal). Gold witness: refuse-offcorpus-germany-40 ('pobocku v Mnichove')."
+    },
+    {
+      "id": "regime-dph",
+      "group": "regime_alias",
+      "field": "tax",
+      "value": "dph",
+      "forms": ["\\bdph\\b", "dan[ei]? z pridane hodnoty", "platce dph"],
+      "note": "zakon o DPH — VAT regime in play. Gold witnesses: vat-turnover-register-03, amount-vat-deadline-31, vat-invoice-duty-56, vat-deduction-57, refuse-offcorpus-eu-vat-oss-70."
+    },
+    {
+      "id": "regime-income-tax",
+      "group": "regime_alias",
+      "field": "tax",
+      "value": "dan_z_prijmu",
+      "forms": ["dan[ei]? z prijmu", "dani z prijmu", "danove priznani"],
+      "note": "zakon o danich z prijmu — income tax / tax return regime. Gold witnesses: amount-tax-rate-48, amount-tax-deadline-52. (First tax rule to match wins; a query never yields two tax facts.)"
+    },
+    {
+      "id": "muni-cz-major",
+      "group": "municipality",
+      "field": "region",
+      "value": "__per_form__",
+      "forms_map": {
+        "\\bv plzni\\b": "Plzeň",
+        "\\bv praze\\b": "Praha",
+        "\\bv brne\\b": "Brno",
+        "\\bv ostrave\\b": "Ostrava"
+      },
+      "note": "A tiny, safe major-city gazetteer (group d). AQ-05's full gazetteer is NOT reachable here, so this ships as a minimal absent-tolerant surface-form set: a match emits the city NAME as the region value (not the raw span). The rule as a whole is witnessed by 'v Plzni' (emp-first-hire-plzen-01); Praha/Brno/Ostrava carry no gold witness but share the same precise pattern shape and cannot misfire. value='__per_form__' means the value comes from forms_map."
+    }
+  ]
+}

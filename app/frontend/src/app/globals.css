@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  /* The app is LIGHT by default; the control room paints its OWN dark surface via .control-shell.
+     color-scheme:light keeps native form controls (the search box) light so typed text stays readable. */
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* NOTE: deliberately NO `@media (prefers-color-scheme: dark)` override here. It used to flip the whole
+   app dark on macOS dark mode, which rendered the LIGHT product page as a white form on a dark body with
+   invisible white-on-white text. The product zone stays light (layout sets bg-slate-50/text-slate-900);
+   only `.control-shell` is dark, and it sets its own colors explicitly. */
+body {
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* ── Control room (UI Build Plan §2.2): a calm, dense dark shell. Semantic color is reserved for the
+   three states (ok/warn/critical) + the north-star gauges; everything else is near-monochrome. Numbers
+   are tabular so live updates never reflow. */
+.control-shell {
+  --ctl-bg: #09090b;
+  --ctl-panel: #131316;
+  --ctl-border: #27272a;
+  --ctl-text: #e4e4e7;
+  --ctl-muted: #71717a;
+  --ctl-ok: #34d399;
+  --ctl-warn: #fbbf24;
+  --ctl-critical: #fb7185;
+  /* calm accent reserved for interactive graph highlight (hover/selection only) */
+  --ctl-graph-accent: #5eb0ef;
+  background: var(--ctl-bg);
+  color: var(--ctl-text);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  min-height: 100vh;
+}
+.control-shell .tnum {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+.control-shell ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.control-shell ::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 4px;
+}

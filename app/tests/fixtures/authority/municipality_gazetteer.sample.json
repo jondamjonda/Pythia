@@ -1,0 +1,32 @@
+[
+  {
+    "code": "582786",
+    "name": "Brno",
+    "okres_code": "CZ0642",
+    "okres_name": "Brno-město",
+    "orp_code": "6203",
+    "orp_name": "Brno",
+    "kraj_code": "CZ064",
+    "kraj_name": "Jihomoravský kraj"
+  },
+  {
+    "code": "554782",
+    "name": "Praha",
+    "okres_code": "CZ0100",
+    "okres_name": "Praha",
+    "orp_code": "1000",
+    "orp_name": "Praha",
+    "kraj_code": "CZ010",
+    "kraj_name": "Hlavní město Praha"
+  },
+  {
+    "code": "554791",
+    "name": "Plzeň",
+    "okres_code": "CZ0323",
+    "okres_name": "Plzeň-město",
+    "orp_code": "3209",
+    "orp_name": "Plzeň",
+    "kraj_code": "CZ032",
+    "kraj_name": "Plzeňský kraj"
+  }
+]

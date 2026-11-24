@@ -1,0 +1,32 @@
+services:
+  postgres:
+    # Postgres 16 + pgvector + PostGIS, built locally.
+    # ltree and pg_trgm ship with Postgres core.
+    build:
+      context: ./docker
+      dockerfile: postgres.Dockerfile
+    image: regsuper/postgres:16
+    container_name: regsuper-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: regsuper
+      POSTGRES_PASSWORD: regsuper
+      POSTGRES_DB: regsuper
+    ports:
+      - "5432:5432"
+    volumes:
+      - regsuper_pgdata:/var/lib/postgresql/data
+      # LEDGER-C5: do NOT mount the whole ./migrations dir into initdb.d. The entrypoint
+      # would auto-run every top-level *.sql (incl. *_rollback.sql, which self-undoes the
+      # schema, and the lockout-risk staged 015/016). Instead, mount migrations read-only
+      # OUT of the auto-run path and run only the curated chain (001..014) via docker/initdb.sh.
+      - ./migrations:/opt/migrations:ro
+      - ./docker/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U regsuper -d regsuper"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  regsuper_pgdata:

@@ -1,0 +1,15 @@
+# Shared ignores for the whole monorepo. engine/ and app/ keep their own .gitignore for
+# project-specific artifacts (raw corpus data, model checkpoints, DB dumps, Next.js builds).
+.DS_Store
+.claude/
+.idea/
+.vscode/
+.venv/
+__pycache__/
+*.py[co]
+.pytest_cache/
+.ruff_cache/
+node_modules/
+.env
+secrets.env
+*.log

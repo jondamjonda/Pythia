@@ -1,0 +1,25 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.env
+*.log
+*.pt
+*.bak
+.DS_Store
+
+# generated Stage-2 training data (regenerable via import_human / gen_stage2)
+train/stage2_data*.jsonl
+
+# raw ingested artifacts (regenerable from e-Sbírka)
+data/
+# but the package DATA ASSETS under pythia/data/ are source-controlled (lawyer-reviewable DRAFT lexicons the
+# engine loads at runtime — e.g. the VL-A-04 deterministic-intake lexicon), NOT regenerable raw ingest.
+!pythia/data/
+!pythia/data/**
+
+# local DB snapshots (large binary dumps; off-repo)
+snapshots/

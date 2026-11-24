@@ -1,0 +1,63 @@
+[project]
+name = "pythia"
+version = "0.0.1"
+description = "Pythia — legal Graph-RAG (GNNRAG) engine for four-corners legal retrieval"
+requires-python = ">=3.12"
+dependencies = [
+  "sqlalchemy[asyncio]>=2.0",
+  "asyncpg>=0.30",
+  "pgvector>=0.3.6",
+  "pydantic>=2.10",
+  "pydantic-settings>=2.7",
+  "numpy>=2.0",
+  "scipy>=1.14",
+  "networkx>=3.4",
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.32",
+  "httpx>=0.28",
+  "lxml>=5.0",
+]
+
+# The GNN stack is isolated so the core engine installs on the M5 Pro without CUDA torch (v3 §A/V1).
+[project.optional-dependencies]
+gnn = ["torch>=2.4", "sentence-transformers>=3.0"]
+sched = ["apscheduler>=3.10"]   # ONLY for `scheduler daemon`; the cron path needs no extra
+# Phase-C synthesizer-seam paid providers — NOT hard deps. Install only when the operator flips
+# synthesizer_provider off the default "ollama". The SDKs are lazy-imported inside their adapters
+# (pythia/llm_paid.py, pythia/llm_openai.py), so the base install stays dependency-light.
+anthropic = ["anthropic>=0.40"]   # synthesizer_provider="anthropic"
+openai = ["openai>=1.50"]         # synthesizer_provider="openai"
+# QC-M24 (eng-tests-06): pin pytest below the next major — a bare `pytest>=8.3` lets pip pull pytest 9.x,
+# which drifts the dev toolchain off the tested 8.x line (and ahead of pytest-asyncio's supported range).
+dev = ["pytest>=8.3,<9", "pytest-asyncio>=0.24", "ruff>=0.15,<0.16"]  # pinned so CI lints and formats exactly like local
+
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pythia*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+markers = [
+    "live: test touches a live external API or the live DB (the project's integration default)",
+    # VL-E-10 (WS5 step 48g) — the FLAGS-ON claim-verify enforce posture (structured + claim_verify enforce,
+    # the exact run_aq_all runner combo). CI runs BOTH sweeps: `-m "not live and not flags_on"` (the default
+    # OFF-posture suite) AND `-m "flags_on"` (the ON-posture pins), so the served-posture behaviour is exercised
+    # without being folded into the default run.
+    "flags_on: exercises the claim-verify ENFORCE served posture (structured + claim_verify enforce)",
+]
+
+# Ruff — codified to match the codebase's de-facto style (this repo was developed with dense,
+# annotation-heavy long lines; some existing lines exceed 200 chars). E501 (line-too-long) is OFF so
+# `ruff check` enforces the load-bearing rules (F: undefined names / unused imports, E: real syntax
+# issues) without churning the whole tree. Tighten later if the team adopts a hard wrap.
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+extend-exclude = [".venv", "train/*.bak"]
+
+[tool.ruff.lint]
+ignore = ["E501"]

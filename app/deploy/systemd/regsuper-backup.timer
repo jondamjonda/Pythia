@@ -1,0 +1,15 @@
+; Trigger the daily backup at 03:00 UTC. Plan §15.4 calls for daily; we
+; pick 03:00 UTC because (a) it's after the OpenAI rate-limit window
+; reset for most regions, (b) European user traffic is at its lowest.
+
+[Unit]
+Description=Regulatory Super App · daily backup timer
+
+[Timer]
+OnCalendar=*-*-* 03:00:00 UTC
+Persistent=true
+RandomizedDelaySec=300
+Unit=regsuper-backup.service
+
+[Install]
+WantedBy=timers.target

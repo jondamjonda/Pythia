@@ -1,0 +1,52 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+secrets.env
+*.env
+!secrets.env.example
+!secrets.prod.env.example
+!*.env.example
+
+data/cnb_pdfs/*
+data/eurlex/*
+data/esbirka/*
+data/raw/
+data/intermediate/
+!data/.gitkeep
+# local secrets + machine-specific runtime data — never commit
+data/api_keys.json
+data/gpu_mps.json
+
+*.log
+logs/
+resp.json
+
+# DB snapshots / dumps — large, local safety artifacts (never commit)
+db_dump/
+*.dump
+
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/tsconfig.tsbuildinfo
+
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+data/exports/
+
+# Wave-2: runtime leader-election lock (M26)
+data/producer_leader.lock
+data/*.lock
+
+# Local-only state (machine-specific, never commit)
+snapshots/
+.claude/
+data/KILL_SWITCH

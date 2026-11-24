@@ -1,0 +1,1049 @@
+{
+ "summary": "Integrated, de-duped, value×feasibility-ordered ingest plan for a MAJOR corpus enlargement, synthesizing all 9 domain assessments against the live inventory (track-D-corpus-P9/corpus_inventory.json: 353 docs = 72 STATUTE, 14 EU_SECONDARY, 49 orphaned REGIONAL_MUNICIPAL_PREDPIS, 16 SOFT_LAW, 2 OOP, 200 first-instance civil 'C-docket' CASE_LAW; 24,299 provisions; doc_type shows 0 vyhlaska / 0 narizeni_vlady — the decree layer is wholly absent). The 9 lists proposed ~145 acts with heavy overlap; after de-dup that is 113 NET-NEW acts (105 CZ via esbirka by external_id NUM/YEAR + 8 EU via eurlex CELEX), ~8,512 estimated provisions, 60 of them directly supporting the in-corpus rulings. ZERO proposals collide with acts already ingested (clean net-new). 12 acts were proposed by two domains each and are collapsed to a single ingest with multi-domain cross-tags: 6/2002, 182/1993, 256/2013, 455/1991, 283/2021, 458/2000, 361/2000, 13/1997, 283/1993, 48/1997, 589/1992, 592/1992. Canonical priority per act = the strongest (highest) rating any assessor gave it. Two flagged items (165/2012 placeholder, 38/2004 superseded by 170/2018) were DROPPED per the 'current-not-repealed' discipline; 183/2006 kept as a deliberate transitional crosswalk for 283/2021. Highest leverage at the very front: the constitutional apex (1/1993, 2/1993, 182/1993, 6/2002) — every 'Čl. X Ústavy/Listiny' cite in the 200 rulings and 72 statutes currently dangles — and the three cross-cutting hubs 455/1991 (trade-licensing gateway the entire financial perimeter points back to), 256/2013 (cadastre bridging civil↔administrative property) and the social-contribution stack (589/1992, 592/1992, 48/1997) that the wage-garnishment 'C-docket' needs to compute net/garnishable wages. The local-government statutes (128/2000, 129/2000, 131/2000, 565/1990, 250/2000, 114/1992) are the only way to give the 49 orphaned municipal/regional predpisy a parent — a concrete, verifiable interlink win.",
+ "prioritized_ingest": [
+  {
+   "ext": "1/1993",
+   "title": "Ústava České republiky",
+   "domain": "constitutional",
+   "why": "Apex norm; roots the entire statute tier and resolves hundreds of dangling 'Čl. X Ústavy' cites in the 200 rulings (Art. 95/36/38).",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 113
+  },
+  {
+   "ext": "2/1993",
+   "title": "Listina základních práv a svobod (Charter)",
+   "domain": "constitutional",
+   "why": "Constitutional-rank bill of rights; the Charter (Čl. 11 property, Čl. 36 fair trial) underpins the 'weaker-party' unfair-clause doctrine the consumer-credit rulings rest on. Extremely high in-degree.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 44
+  },
+  {
+   "ext": "182/1993",
+   "title": "Zákon o Ústavním soudu (Constitutional Court Act)",
+   "domain": "constitutional+procedural",
+   "why": "De-duped (procedural+constitutional). Apex remedy node (ústavní stížnost, abstract review); closes the appeals hierarchy above every ingested procedural code and grounds the binding ÚS doctrine the rulings cite.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 160
+  },
+  {
+   "ext": "6/2002",
+   "title": "Zákon o soudech a soudcích (Courts & Judges Act)",
+   "domain": "constitutional+procedural",
+   "why": "De-duped (procedural+constitutional). Organic act for the entire ordinary-court system that issues all 200 rulings; grounds court competence/recusal/jurisdiction the judgments invoke. Hub for the procedural cluster.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 200
+  },
+  {
+   "ext": "455/1991",
+   "title": "Živnostenský zákon (Trade Licensing Act)",
+   "domain": "civil+commercial",
+   "why": "De-duped (civil+commercial). The universal business gateway nearly every sector statute (incl. the ingested financial perimeter) refers back to, and the podnikatel definition the consumer-vs-entrepreneur asymmetry hinges on. Largest single interlink fan-out.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 80
+  },
+  {
+   "ext": "256/2013",
+   "title": "Katastrální zákon (Cadastre Act)",
+   "domain": "civil+administrative",
+   "why": "De-duped (civil+administrative). Public-register backbone of all real-property rights; bridges Civil Code property (89/2012) and administrative property law, anchors lease/co-ownership/vklad cites in the 'C-docket'.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 90
+  },
+  {
+   "ext": "121/2000",
+   "title": "Autorský zákon (Copyright Act)",
+   "domain": "civil",
+   "why": "Largest private-law satellite outside the Civil Code; grounds copyright-licence/royalty (OSA/Intergram) civil claims and anchors the IP cluster.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 120
+  },
+  {
+   "ext": "106/1999",
+   "title": "Zákon o svobodném přístupu k informacím (FOIA)",
+   "domain": "administrative",
+   "why": "One of the most-litigated administrative acts; info-refusal challenges are a staple of the správní-soudnictví docket; links tightly to 500/2004, 150/2002 and GDPR.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 30
+  },
+  {
+   "ext": "283/2021",
+   "title": "Stavební zákon (Building Act, current)",
+   "domain": "administrative+commercial",
+   "why": "De-duped (administrative+commercial). Current consolidated building/planning code; largest substantive feed into administrative justice; major hub linking procedure, expropriation, EIA, environment, energy, roads, cadastre.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 330
+  },
+  {
+   "ext": "216/1994",
+   "title": "Zákon o rozhodčím řízení (Arbitration Act)",
+   "domain": "procedural",
+   "why": "Invalid consumer arbitration clauses are a recurring, decisive issue in the consumer-credit/debt 'C-docket'; arbitral awards as enforceable titles feed exekuce.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 50
+  },
+  {
+   "ext": "143/2001",
+   "title": "Zákon o ochraně hospodářské soutěže (Competition Act)",
+   "domain": "commercial",
+   "why": "The substantive competition code; corpus has only the 4-provision ÚOHS-competence stub 273/1996 but not the act that governs cartels/dominance/mergers — a glaring substantive hole.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 35
+  },
+  {
+   "ext": "589/1992",
+   "title": "Zákon o pojistném na sociální zabezpečení",
+   "domain": "labour_social+tax",
+   "why": "De-duped (labour rated critical over tax's medium). Largest mandatory wage deduction; load-bearing for computing net/garnishable wage in the wage-garnishment 'C-docket'; bridges labour↔tax↔enforcement.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 60
+  },
+  {
+   "ext": "48/1997",
+   "title": "Zákon o veřejném zdravotním pojištění",
+   "domain": "labour_social+tax",
+   "why": "De-duped (labour critical). Universal health-insurance code; mandatory wage deduction needed (with 589/1992, 592/1992) for the net-wage/premium-arrears rulings.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 130
+  },
+  {
+   "ext": "155/1995",
+   "title": "Zákon o důchodovém pojištění (Pension Insurance)",
+   "domain": "labour_social",
+   "why": "Core social-insurance branch; high public-query value; underpins pension/disability/contributory-period disputes.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 110
+  },
+  {
+   "ext": "187/2006",
+   "title": "Zákon o nemocenském pojištění (Sickness Insurance)",
+   "domain": "labour_social",
+   "why": "Second core insurance branch (sick-pay, maternity/paternity); interfaces with Labour Code §192 wage compensation.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 200
+  },
+  {
+   "ext": "163/2014",
+   "title": "Vyhláška o výkonu činnosti bank, spořitelních a úvěrních družstev a obchodníků s CP",
+   "domain": "financial",
+   "why": "FIRST implementing decree in a corpus with ZERO decrees; the operative prudential detail 21/1992/87/1995/256/2004 delegate to; every inbound reference currently dangles. Highest-leverage decree.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 210
+  },
+  {
+   "ext": "565/1990",
+   "title": "Zákon o místních poplatcích (Local Fees Act)",
+   "domain": "tax",
+   "why": "Parent statute for the fee ordinances among the 49 orphaned local předpisy; closes the single biggest dangling-parent gap in the fiscal layer.",
+   "connector": "esbirka",
+   "priority": "critical",
+   "est_provisions": 30
+  },
+  {
+   "ext": "304/2013",
+   "title": "Zákon o veřejných rejstřících PO a FO a evidenci svěřenských fondů",
+   "domain": "civil",
+   "why": "Registration statute for the legal persons the Civil Code creates (spolek/nadace/ústav) + trust evidence; unwires the non-profit/foundation branch of 89/2012.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 130
+  },
+  {
+   "ext": "441/2003",
+   "title": "Zákon o ochranných známkách (Trademarks Act)",
+   "domain": "civil",
+   "why": "Second IP pillar; trademark-infringement/unfair-competition civil claims; pairs with 121/2000 to form the IP cluster.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 55
+  },
+  {
+   "ext": "39/2020",
+   "title": "Zákon o realitním zprostředkování (Real-Estate Brokerage)",
+   "domain": "civil",
+   "why": "Broker-commission/deposit-return consumer disputes (exactly the C-docket); bridges consumer cluster (634/1992, 257/2016) and property cluster (256/2013).",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 35
+  },
+  {
+   "ext": "82/1998",
+   "title": "Zákon o odpovědnosti za škodu při výkonu veřejné moci (State Liability)",
+   "domain": "civil",
+   "why": "Special-tort regime beside Civil Code damages; high-volume unreasonable-length-of-proceedings claims tried at the corpus's exact court tier; bridges civil↔administrative.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 40
+  },
+  {
+   "ext": "104/2013",
+   "title": "Zákon o mezinárodní justiční spolupráci ve věcech trestních",
+   "domain": "criminal",
+   "why": "Highest-value criminal gap; extradition/EAW/MLA/EU freezing-confiscation; the codes defer cross-border matters to it, closing many dangling references and bridging to the EU layer.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 340
+  },
+  {
+   "ext": "283/1993",
+   "title": "Zákon o státním zastupitelství (Public Prosecution)",
+   "domain": "criminal+constitutional",
+   "why": "De-duped (criminal+constitutional). Constitutes the prosecutor (dominus litis of pre-trial); the trestní řád cross-references it throughout; completes the institutional triad with courts and ConCourt.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 50
+  },
+  {
+   "ext": "273/2008",
+   "title": "Zákon o Policii ČR (Police Act)",
+   "domain": "criminal",
+   "why": "Principal investigating body; grounds police powers the Procedure Code invokes; supports case-law where lawfulness of police action / evidence admissibility is at issue.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 120
+  },
+  {
+   "ext": "269/1994",
+   "title": "Zákon o Rejstříku trestů (Criminal Records Register)",
+   "domain": "criminal",
+   "why": "Cross-domain hub: the bezúhonnost concept that pervades dozens of ingested licensing acts (banking, capital-markets, insurance distribution, auditors) plus recidivism/expungement under the Criminal Code.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 30
+  },
+  {
+   "ext": "358/1992",
+   "title": "Notářský řád (Notarial Code)",
+   "domain": "procedural",
+   "why": "Source of a major class of enforceable titles (notářský zápis se svolením k vykonatelnosti) feeding exekuce, and probate as a ZŘS proceeding; bridges enforcement, special proceedings, succession.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 130
+  },
+  {
+   "ext": "85/1996",
+   "title": "Zákon o advokacii (Advocacy Act)",
+   "domain": "procedural",
+   "why": "Statutory basis for the advokátní tarif driving the cost-award (náklady řízení) ruling present in essentially every contested judgment in the corpus.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 70
+  },
+  {
+   "ext": "183/2006",
+   "title": "Stavební zákon (predecessor, transitional)",
+   "domain": "administrative",
+   "why": "NOT fully repealed; governs proceedings opened pre-mid-2024 that the 2023-24 rulings still cite; without it bare '§...stavebního zákona' mis-resolves. Flag transitional + crosswalk to 283/2021.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 200
+  },
+  {
+   "ext": "184/2006",
+   "title": "Zákon o vyvlastnění (Expropriation Act)",
+   "domain": "administrative",
+   "why": "Constitutional-property interface of building/infrastructure law; reviewed in administrative justice; tightly coupled to 283/2021, 13/1997 and Civil Code compensation.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 30
+  },
+  {
+   "ext": "458/2000",
+   "title": "Energetický zákon (Energy Act)",
+   "domain": "administrative+commercial",
+   "why": "De-duped (administrative+commercial). Dominant regulated-industry code (ERÚ); energy-supply debt/termination disputes are exactly the district-court civil docket; bridges public-law and finance.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 110
+  },
+  {
+   "ext": "114/1992",
+   "title": "Zákon o ochraně přírody a krajiny (Nature Protection)",
+   "domain": "administrative",
+   "why": "Most-cited environmental statute and lead act for NGO standing; ALSO the parent for the regional nařízení creating přírodní památky among the 49 orphaned předpisy — concrete interlink.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 90
+  },
+  {
+   "ext": "326/1999",
+   "title": "Zákon o pobytu cizinců (Foreign Residence)",
+   "domain": "administrative",
+   "why": "One of the highest-volume areas of administrative justice (NSS); opens an entire high-volume public-law domain currently absent.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 190
+  },
+  {
+   "ext": "325/1999",
+   "title": "Zákon o azylu (Asylum Act)",
+   "domain": "administrative",
+   "why": "With 326/1999 dominates NSS caseload; core high-frequency 150/2002 subject; links to EU asylum acquis.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 90
+  },
+  {
+   "ext": "128/2000",
+   "title": "Zákon o obcích (Municipalities Act)",
+   "domain": "administrative",
+   "why": "Organic law of local self-government; gives the many orphaned OZV among the 49 local předpisy a parent statute — direct interlink win.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 160
+  },
+  {
+   "ext": "127/2005",
+   "title": "Zákon o elektronických komunikacích (Telecom)",
+   "domain": "commercial",
+   "why": "Heavily consumer-facing; telecom-service debt/contract disputes are a staple of the C-docket; links to consumer protection and GDPR.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 180
+  },
+  {
+   "ext": "168/1999",
+   "title": "Zákon o pojištění odpovědnosti z provozu vozidla (povinné ručení)",
+   "domain": "financial",
+   "why": "One of the most-litigated insurance statutes in civil practice; the rulings cite it with the Civil Code; bridges insurance (277/2009) and civil-liability.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 35
+  },
+  {
+   "ext": "582/1991",
+   "title": "Zákon o organizaci a provádění sociálního zabezpečení",
+   "domain": "labour_social",
+   "why": "Procedural backbone of the whole social-security system (ČSSZ/OSSZ competence, claims, appeals); the insurance branches lack their procedure layer without it.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 150
+  },
+  {
+   "ext": "592/1992",
+   "title": "Zákon o pojistném na veřejné zdravotní pojištění",
+   "domain": "labour_social+tax",
+   "why": "De-duped (labour high over tax medium). Completes (with 589/1992) the deduction stack for net/garnishable-wage computation; frequent premium-arrears litigation.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 30
+  },
+  {
+   "ext": "198/2009",
+   "title": "Antidiskriminační zákon (Anti-Discrimination Act)",
+   "domain": "labour_social",
+   "why": "Substantive basis for equal-treatment/equal-pay claims; flagship rights statute broadening scope beyond finance; cross-refs Labour Code, Employment Act, Civil Code.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 20
+  },
+  {
+   "ext": "118/2000",
+   "title": "Zákon o ochraně zaměstnanců při platební neschopnosti zaměstnavatele",
+   "domain": "labour_social",
+   "why": "Bridges labour law and Insolvency (182/2006); directly supports unpaid-wage claims in employer-insolvency scenarios in the wage C-docket.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 20
+  },
+  {
+   "ext": "243/2000",
+   "title": "Zákon o rozpočtovém určení daní",
+   "domain": "tax",
+   "why": "Fiscal hinge splitting shared taxes between state/regions/municipalities; links the tax cluster to the local-government and public-finance layer.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 12
+  },
+  {
+   "ext": "456/2011",
+   "title": "Zákon o Finanční správě ČR",
+   "domain": "tax",
+   "why": "Constitutes the tax authorities (GFŘ, finanční úřady) that exercise every power in the Tax Code 280/2009; supplies the institutional 'who' rulings name.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 22
+  },
+  {
+   "ext": "242/2016",
+   "title": "Celní zákon (Customs Act, current)",
+   "domain": "tax",
+   "why": "Current CZ implementing statute operationalising the EU Union Customs Code; dovetails with VAT-on-import and excise; replaced repealed 13/1993.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 80
+  },
+  {
+   "ext": "247/1995",
+   "title": "Zákon o volbách do Parlamentu ČR",
+   "domain": "constitutional",
+   "why": "Principal electoral organic act; electoral disputes reviewed by NSS under 150/2002; links the Parliament chapter to administrative justice.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 95
+  },
+  {
+   "ext": "346/2013",
+   "title": "Vyhláška o předkládání výkazů bankami ČNB",
+   "domain": "financial",
+   "why": "Reporting decree under 21/1992 + 6/1993; high delegation target; resolves citing-but-missing references into the Banking and ČNB Acts.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 20
+  },
+  {
+   "ext": "305/2016",
+   "title": "Vyhláška o předkládání výkazů pojišťovnami ČNB",
+   "domain": "financial",
+   "why": "Solvency II national reporting decree under 277/2009; without it the insurance prudential layer is statute-only.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 18
+  },
+  {
+   "ext": "7/2018",
+   "title": "Vyhláška o podmínkách činnosti platební instituce / EMI",
+   "domain": "financial",
+   "why": "Core implementing decree of 370/2017 Payments Act (capital, safeguarding, PII); resolves the statute's many 'stanoví vyhláška' pointers; links to PSD2.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 30
+  },
+  {
+   "ext": "244/2013",
+   "title": "Vyhláška k pravidlům ZISIF",
+   "domain": "financial",
+   "why": "Principal implementing decree of 240/2013 ZISIF (704 prov, delegates heavily); depositary duties, fund limits, valuation; resolves AIFMD/UCITS cross-refs.",
+   "connector": "esbirka",
+   "priority": "high",
+   "est_provisions": 40
+  },
+  {
+   "ext": "32014R0596",
+   "title": "Regulation (EU) 596/2014 (Market Abuse, MAR)",
+   "domain": "financial",
+   "why": "Directly-applicable market-abuse regime supervised under 256/2004/15/1998; high-citation EU act currently dangling; links to MiFID II/MiFIR.",
+   "connector": "eurlex",
+   "priority": "high",
+   "est_provisions": 40
+  },
+  {
+   "ext": "32017R1129",
+   "title": "Regulation (EU) 2017/1129 (Prospectus)",
+   "domain": "financial",
+   "why": "256/2004 ZPKT and 190/2004 Bonds implement/reference it for public offers/admission; resolves dangling prospectus cross-refs.",
+   "connector": "eurlex",
+   "priority": "high",
+   "est_provisions": 50
+  },
+  {
+   "ext": "32009L0065",
+   "title": "Directive 2009/65/EC (UCITS)",
+   "domain": "financial",
+   "why": "240/2013 ZISIF is the national UCITS transposition yet the directive is absent while AIFMD is present; completes the fund-law transposition layer.",
+   "connector": "eurlex",
+   "priority": "high",
+   "est_provisions": 120
+  },
+  {
+   "ext": "32022R2554",
+   "title": "Regulation (EU) 2022/2554 (DORA)",
+   "domain": "financial",
+   "why": "Directly-applicable since Jan 2025 across every financial statute in the corpus; current high-priority regime the corpus cannot answer at all; references CRR/MiFID/Solvency II/PSD2.",
+   "connector": "eurlex",
+   "priority": "high",
+   "est_provisions": 60
+  },
+  {
+   "ext": "32006L0112",
+   "title": "Council Directive 2006/112/EC (VAT Directive)",
+   "domain": "tax",
+   "why": "Parent instrument of CZ VAT Act 235/2004; nearly every VAT dispute/CJEU reference turns on it; biggest single EU-interlink win on the tax side. Largest EU act (~414 prov).",
+   "connector": "eurlex",
+   "priority": "high",
+   "est_provisions": 414
+  },
+  {
+   "ext": "159/1999",
+   "title": "Zákon o podnikání v cestovním ruchu (Tourism/Package-Travel)",
+   "domain": "civil",
+   "why": "Completes the Civil Code package-tour contract; refund/insolvency claims against agencies are a recurring consumer docket.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 30
+  },
+  {
+   "ext": "527/1990",
+   "title": "Patentový zákon (Patents/Inventions)",
+   "domain": "civil",
+   "why": "Completes the IP satellite; employee-invention compensation links to Labour Code; clusters with 121/2000, 441/2003.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 80
+  },
+  {
+   "ext": "555/1992",
+   "title": "Zákon o Vězeňské službě a justiční stráži",
+   "domain": "criminal",
+   "why": "Constitutes the body executing custody/imprisonment/protective detention; grounds the implementing-body references in the execution acts.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 45
+  },
+  {
+   "ext": "293/1993",
+   "title": "Zákon o výkonu vazby (Pre-trial Custody)",
+   "domain": "criminal",
+   "why": "Governs execution of pre-trial custody; completes execution-of-measures sub-domain; supports detention-conditions review.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 35
+  },
+  {
+   "ext": "129/2008",
+   "title": "Zákon o výkonu zabezpečovací detence",
+   "domain": "criminal",
+   "why": "Execution of protective detention defined by the Criminal Code and deferred here; rounds out protective-measures sub-domain.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 60
+  },
+  {
+   "ext": "254/2001",
+   "title": "Vodní zákon (Water Act)",
+   "domain": "administrative",
+   "why": "Core special-administration code; water-permit/offence decisions reviewed in administrative justice; strengthens the environmental sub-graph.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 130
+  },
+  {
+   "ext": "541/2020",
+   "title": "Zákon o odpadech (Waste Act, current)",
+   "domain": "administrative",
+   "why": "Current Waste Act (replaced 185/2001); waste-offence/permit decisions feed administrative justice and přestupky; successor crosswalk for old 185/2001 cites.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 160
+  },
+  {
+   "ext": "201/2012",
+   "title": "Zákon o ochraně ovzduší (Air Protection)",
+   "domain": "administrative",
+   "why": "Emission permits/air-quality enforcement; reviewed under 150/2002; densifies the environmental-enforcement sub-graph.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 50
+  },
+  {
+   "ext": "100/2001",
+   "title": "Zákon o posuzování vlivů na ŽP (EIA)",
+   "domain": "administrative",
+   "why": "Procedural gateway to almost every large permit and a frequent ground of challenge; high interlink-per-provision binding the environmental cluster.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 30
+  },
+  {
+   "ext": "186/2013",
+   "title": "Zákon o státním občanství ČR (Citizenship)",
+   "domain": "administrative",
+   "why": "Completes the residence/citizenship trio; citizenship-grant refusals reviewed under 150/2002.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 50
+  },
+  {
+   "ext": "129/2000",
+   "title": "Zákon o krajích (Regions Act)",
+   "domain": "administrative",
+   "why": "Organic law of regional self-government; directly parents the regional nařízení among the 49 orphaned předpisy (Liberecký/Jihomoravský/Plzeňský).",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 100
+  },
+  {
+   "ext": "13/1997",
+   "title": "Zákon o pozemních komunikacích (Roads Act)",
+   "domain": "administrative+commercial",
+   "why": "De-duped (administrative+commercial). Road-authority/special-use decisions reviewed under 150/2002; links expropriation, construction, traffic and the regional silnice nařízení.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 50
+  },
+  {
+   "ext": "361/2000",
+   "title": "Zákon o provozu na pozemních komunikacích (Road Traffic)",
+   "domain": "administrative+commercial",
+   "why": "De-duped (administrative+commercial). One of the highest-volume sources of přestupky and accident-damages claims; densifies the offences sub-graph with 250/2016.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 140
+  },
+  {
+   "ext": "16/1993",
+   "title": "Zákon o dani silniční (Road Tax)",
+   "domain": "tax",
+   "why": "Current (narrowed to HGVs, not repealed); completes the substantive-tax set; clean deterministic link to Tax Code procedure.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 12
+  },
+  {
+   "ext": "523/1992",
+   "title": "Zákon o daňovém poradenství a KDP ČR",
+   "domain": "tax",
+   "why": "Constitutes the Chamber of Tax Advisers; parallels the ingested Auditors Act; completes the regulated-profession layer of tax.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 16
+  },
+  {
+   "ext": "218/2000",
+   "title": "Rozpočtová pravidla (State Budget Rules)",
+   "domain": "tax",
+   "why": "Fiscal counterpart of the tax-collection acts; statute behind subsidy-clawback (odvod za porušení rozpočtové kázně) administered under the Tax Code; links to procurement/public-finance.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 35
+  },
+  {
+   "ext": "250/2000",
+   "title": "Rozpočtová pravidla územních rozpočtů (Local Budget Rules)",
+   "domain": "tax",
+   "why": "Parent fiscal framework for the 49 orphaned local předpisy; with 565/1990 and 243/2000 forms the local-fiscal triangle.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 25
+  },
+  {
+   "ext": "202/2012",
+   "title": "Zákon o mediaci (Mediation Act)",
+   "domain": "procedural",
+   "why": "ADR companion to litigation; court-ordered first meeting (§100 OSŘ); intertwined with civil/family proceedings and limitation rules.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 35
+  },
+  {
+   "ext": "254/2019",
+   "title": "Zákon o znalcích (Court Experts Act, current)",
+   "domain": "procedural",
+   "why": "Current (replaced 36/1967); expert opinions as evidence and znalečné cost awards — common in contested civil matters and enforcement valuations.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 60
+  },
+  {
+   "ext": "250/2023",
+   "title": "Zákon o veřejných dražbách (Public Auctions, current)",
+   "domain": "procedural",
+   "why": "In force 1.1.2025, REPLACING repealed 26/2000 (current-not-repealed discipline); forced public auctions for realising assets in debt enforcement.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 110
+  },
+  {
+   "ext": "117/1995",
+   "title": "Zákon o státní sociální podpoře",
+   "domain": "labour_social",
+   "why": "Major non-insurance benefit code (child/parental/housing allowance); benefit-claim/overpayment disputes; broadens welfare scope.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 70
+  },
+  {
+   "ext": "111/2006",
+   "title": "Zákon o pomoci v hmotné nouzi",
+   "domain": "labour_social",
+   "why": "Social-safety-net floor; interacts with wage-garnishment (protected subsistence amount) and consumer/enforcement litigation.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 80
+  },
+  {
+   "ext": "110/2006",
+   "title": "Zákon o životním a existenčním minimu",
+   "domain": "labour_social",
+   "why": "Defines the subsistence minimum setting the un-garnishable wage portion in exekuce — directly relevant to the wage-garnishment C-docket; unusually high interlink-per-provision.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 12
+  },
+  {
+   "ext": "108/2006",
+   "title": "Zákon o sociálních službách",
+   "domain": "labour_social",
+   "why": "Rounds out the social-welfare pillar (care allowance, registration); large body of citizen-facing rules; high standalone scope.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 120
+  },
+  {
+   "ext": "349/1999",
+   "title": "Zákon o Veřejném ochránci práv (Ombudsman)",
+   "domain": "constitutional",
+   "why": "Foundational rights-protection institution; interlocks with the Charter and the anti-discrimination act; cheap high-authority node.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 30
+  },
+  {
+   "ext": "275/2012",
+   "title": "Zákon o volbě prezidenta republiky",
+   "domain": "constitutional",
+   "why": "Direct presidential-election act; completes elected-institutions set; electoral-dispute review links to ConCourt/NSS.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 70
+  },
+  {
+   "ext": "62/2003",
+   "title": "Zákon o volbách do Evropského parlamentu",
+   "domain": "constitutional",
+   "why": "Ties the national constitutional/electoral order to the EU institutional layer already heavily present.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 60
+  },
+  {
+   "ext": "130/2000",
+   "title": "Zákon o volbách do zastupitelstev krajů",
+   "domain": "constitutional",
+   "why": "Constitutes the regional bodies that issue the orphaned regional nařízení; foundational for the regional tier already ingested.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 65
+  },
+  {
+   "ext": "491/2001",
+   "title": "Zákon o volbách do zastupitelstev obcí",
+   "domain": "constitutional",
+   "why": "Constitutes the municipalities that issue the orphaned OZV; grounds the issuing authority of the many municipal předpisy.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 75
+  },
+  {
+   "ext": "526/1990",
+   "title": "Zákon o cenách (Prices Act)",
+   "domain": "commercial",
+   "why": "Horizontal price regulation cross-cutting energy/telecom/consumer/competition; compact, high-interlink hub.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 25
+  },
+  {
+   "ext": "395/2009",
+   "title": "Zákon o významné tržní síle (Significant Market Power)",
+   "domain": "commercial",
+   "why": "ÚOHS-enforced buyer-power abuse in agri-food (transposes EU UTP Dir 2019/633); bridges competition and agriculture/food.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 12
+  },
+  {
+   "ext": "110/1997",
+   "title": "Zákon o potravinách a tabákových výrobcích (Foodstuffs)",
+   "domain": "commercial",
+   "why": "Core agri-food product-safety/labelling code; anchors the agriculture/food vertical currently absent; links to consumer protection and product regulation.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 30
+  },
+  {
+   "ext": "22/1997",
+   "title": "Zákon o technických požadavcích na výrobky (Product Conformity)",
+   "domain": "commercial",
+   "why": "Horizontal product-safety spine (CE-marking, conformity, surveillance); distinct from the 22/1992 untitled stub already present; cross-cuts consumer/food/trade-licensing.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 28
+  },
+  {
+   "ext": "32016R1011",
+   "title": "Regulation (EU) 2016/1011 (Benchmarks, BMR)",
+   "domain": "financial",
+   "why": "256/2004/15/1998 administer benchmark provision under BMR; currently dangling EU reference; links to MiFID II/MiFIR.",
+   "connector": "eurlex",
+   "priority": "medium",
+   "est_provisions": 60
+  },
+  {
+   "ext": "32019R2088",
+   "title": "Regulation (EU) 2019/2088 (SFDR)",
+   "domain": "financial",
+   "why": "Directly-applicable ESG-disclosure regime binding on participants under 256/2004/240/2013/277/2009; fills the sustainable-finance gap.",
+   "connector": "eurlex",
+   "priority": "medium",
+   "est_provisions": 20
+  },
+  {
+   "ext": "32024R1624",
+   "title": "Regulation (EU) 2024/1624 (AMLR single rulebook)",
+   "domain": "financial",
+   "why": "Directly-applicable successor to AMLD4 (present, repealed from 2027-07-09); future-proofs the AML domain and shows temporal succession with 253/2008.",
+   "connector": "eurlex",
+   "priority": "medium",
+   "est_provisions": 90
+  },
+  {
+   "ext": "233/2009",
+   "title": "Vyhláška o žádostech a prokazování odborné způsobilosti/důvěryhodnosti",
+   "domain": "financial",
+   "why": "Cross-sector fit-and-proper decree applied under 21/1992/256/2004/277/2009/240/2013 — very high fan-out as four ingested statutes delegate to it.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 25
+  },
+  {
+   "ext": "309/2017",
+   "title": "Vyhláška o žádostech podle zákona o platebním styku",
+   "domain": "financial",
+   "why": "Licensing/notification decree under 370/2017; complements 7/2018 to complete the payments implementing layer.",
+   "connector": "esbirka",
+   "priority": "medium",
+   "est_provisions": 15
+  },
+  {
+   "ext": "207/2000",
+   "title": "Zákon o ochraně průmyslových vzorů (Industrial Designs)",
+   "domain": "civil",
+   "why": "Completes the registered-IP cluster; design-infringement/unfair-competition civil claims; cheap cluster-completion.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 55
+  },
+  {
+   "ext": "200/1994",
+   "title": "Zákon o zeměměřictví (Surveying/Geodesy)",
+   "domain": "civil",
+   "why": "Technical companion to the cadastre (geometrický plán); boundary/easement disputes; raises real-property-cluster completeness.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 25
+  },
+  {
+   "ext": "115/2006",
+   "title": "Zákon o registrovaném partnerství",
+   "domain": "civil",
+   "why": "Family-law satellite not fully absorbed by the Civil Code; ingest CURRENT consolidated text (2024-25 family-law reform). Status/maintenance reach the special-proceedings docket.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 30
+  },
+  {
+   "ext": "7/2002",
+   "title": "Zákon o řízení ve věcech soudců, SZ a exekutorů",
+   "domain": "criminal",
+   "why": "Disciplinary-proceedings act for judges/prosecutors/exekutoři; institutional interlink across the criminal-justice and enforcement layers.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 40
+  },
+  {
+   "ext": "334/1992",
+   "title": "Zákon o ochraně zemědělského půdního fondu",
+   "domain": "administrative",
+   "why": "Land-withdrawal consents that precondition most construction outside built-up areas; fills a recurring gap in permitting chains.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 25
+  },
+  {
+   "ext": "123/1998",
+   "title": "Zákon o právu na informace o životním prostředí",
+   "domain": "administrative",
+   "why": "Lex specialis to 106/1999 for environmental data (Aarhus); high-precision linker between transparency and environmental clusters.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 15
+  },
+  {
+   "ext": "131/2000",
+   "title": "Zákon o hlavním městě Praze",
+   "domain": "administrative",
+   "why": "Completes the self-government trio; parents the Hlavní město Praha nařízení already in corpus.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 90
+  },
+  {
+   "ext": "111/2009",
+   "title": "Zákon o základních registrech",
+   "domain": "administrative",
+   "why": "Backbone of CZ e-government used in every procedure; anchors the data/e-gov layer; links to GDPR and 500/2004.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 70
+  },
+  {
+   "ext": "12/2020",
+   "title": "Zákon o právu na digitální služby",
+   "domain": "administrative",
+   "why": "Modern statutory right to deal with authorities electronically; completes the e-government/transparency sub-graph.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 15
+  },
+  {
+   "ext": "17/2012",
+   "title": "Zákon o Celní správě ČR",
+   "domain": "tax",
+   "why": "Constitutes the Celní správa administering customs/excise; institutional pair to 456/2011; completes the 'who administers it' layer for indirect taxes.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 20
+  },
+  {
+   "ext": "187/2016",
+   "title": "Zákon o dani z hazardních her (Gambling Tax)",
+   "domain": "tax",
+   "why": "Stand-alone modern substantive tax paired with gambling regulation 186/2016; broadens substantive-tax coverage; links to Tax Code procedure.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 18
+  },
+  {
+   "ext": "416/2023",
+   "title": "Zákon o dorovnávacích daních (Top-up/Pillar Two)",
+   "domain": "tax",
+   "why": "CZ transposition of the EU Minimum Tax Directive; future-proofs large-group taxation; sits beside corporate income tax and accounting.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 170
+  },
+  {
+   "ext": "354/2019",
+   "title": "Zákon o soudních tlumočnících a překladatelích",
+   "domain": "procedural",
+   "why": "Current (split from 36/1967); right to interpreter and tlumočné cost item; pairs with 254/2019 to complete the evidence-profession layer.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 45
+  },
+  {
+   "ext": "373/2011",
+   "title": "Zákon o specifických zdravotních službách",
+   "domain": "labour_social",
+   "why": "Occupational-health services / fitness-for-work — medical-law counterpart to OHS 309/2006; relevant to dismissal-on-health-grounds disputes.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 100
+  },
+  {
+   "ext": "361/2003",
+   "title": "Zákon o služebním poměru příslušníků bezpečnostních sborů",
+   "domain": "labour_social",
+   "why": "Service-relationship code for security forces; major special-category employment regime parallel to Labour Code and Civil Service Act.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 230
+  },
+  {
+   "ext": "3/1993",
+   "title": "Zákon o státních symbolech ČR",
+   "domain": "constitutional",
+   "why": "Completes the state-identity tier; small authoritative node referenced by the Constitution (Art. 14).",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 8
+  },
+  {
+   "ext": "352/2001",
+   "title": "Zákon o užívání státních symbolů ČR",
+   "domain": "constitutional",
+   "why": "Operative companion to 3/1993; completes the state-symbols pair; ingest only for exhaustive foundational coverage.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 16
+  },
+  {
+   "ext": "110/1998",
+   "title": "Ústavní zákon o bezpečnosti ČR",
+   "domain": "constitutional",
+   "why": "Constitutional-rank act on security of the state (emergency powers); part of the ústavní pořádek; anchors crisis-management statutes.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 12
+  },
+  {
+   "ext": "266/1994",
+   "title": "Zákon o dráhách (Railways Act)",
+   "domain": "commercial",
+   "why": "Extends the transport vertical to rail; transposes EU rail-market directives; links to procurement (PSO) and competition (open access).",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 40
+  },
+  {
+   "ext": "477/2001",
+   "title": "Zákon o obalech (Packaging Act)",
+   "domain": "commercial",
+   "why": "Horizontal producer-compliance statute (EKO-KOM take-back); links product/consumer/environmental compliance.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 20
+  },
+  {
+   "ext": "252/1997",
+   "title": "Zákon o zemědělství (Agriculture Act)",
+   "domain": "commercial",
+   "why": "Framework statute for agricultural activity/subsidies/LPIS; completes the agriculture vertical with 110/1997 and 395/2009.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 20
+  },
+  {
+   "ext": "408/2010",
+   "title": "Vyhláška o předkládání informací penzijní společností",
+   "domain": "financial",
+   "why": "Reporting decree for the supplementary-pension regime (427/2011); completes the pensions implementing layer.",
+   "connector": "esbirka",
+   "priority": "low",
+   "est_provisions": 10
+  }
+ ],
+ "staging": [
+  "STAGE 0 — CONSTITUTIONAL & COURT SPINE (apex first; resolves the most cross-references). Acts: 1/1993, 2/1993, 182/1993, 6/2002, 283/1993, 247/1995. Rationale: the corpus has ZERO constitutional entries, so every 'Čl. X Ústavy/Listiny' cite in 72 statutes + 200 rulings currently dangles and 6/2002 grounds the court that issued every ruling. 182/1993 and 6/2002 and 283/1993 are de-duped single ingests cross-tagged constitutional+procedural/criminal. Gate: classify 1/1993, 2/1993, 110/1998 as CONSTITUTIONAL (above STATUTE) via classify_taxonomy; verify >95% xref precision on inbound 'Ústava/Listina' edges before Stage 1.",
+  "STAGE 1 — CIVIL/PRIVATE-LAW + PROCEDURAL HUBS (highest case-law leverage for the consumer-debt C-docket). Acts: 455/1991, 256/2013, 121/2000, 304/2013, 441/2003, 39/2020, 82/1998, 159/1999, 216/1994, 358/1992, 85/1996. Rationale: directly grounds the dangling cites in the 200 consumer/lease/IP rulings and the cost-award/arbitration-clause/enforceable-title machinery; 455/1991 and 256/2013 are de-duped civil+commercial/administrative hubs. Gate >95% xref precision before Stage 2.",
+  "STAGE 2 — LABOUR & SOCIAL-SECURITY (closes the net/garnishable-wage computation the C-docket needs). Acts: 589/1992, 48/1997, 155/1995, 187/2006, 582/1991, 592/1992, 198/2009, 118/2000, 110/2006, 117/1995, 111/2006, 108/2006. Rationale: 589/1992, 48/1997, 592/1992 are de-duped labour+tax single ingests (cross-tag both); 110/2006 sets the un-garnishable minimum referenced by 120/2001/99/1963. Gate; flag these premium acts to the id-crosswalk effort so a parallel tax track does not duplicate them.",
+  "STAGE 3 — ADMINISTRATIVE: TRANSPARENCY + BUILDING + MIGRATION (largest single scope gap; highest administrative-justice volume). Acts: 106/1999, 283/2021, 183/2006, 184/2006, 326/1999, 325/1999, 186/2013, 13/1997, 361/2000. Rationale: building hub + transparency + the highest-volume NSS migration docket; 283/2021/13/1997/361/2000 de-duped administrative+commercial. Flag 183/2006 transitional and run temporal_complete so the 283/2021 successor crosswalk is correct. Gate.",
+  "STAGE 4 — ADMINISTRATIVE: ENVIRONMENT + SELF-GOVERNMENT (anchors the 49 orphaned local předpisy). Acts: 114/1992, 254/2001, 541/2020, 201/2012, 100/2001, 334/1992, 123/1998, 128/2000, 129/2000, 131/2000, 111/2009, 12/2020. Rationale: 128/2000/129/2000/131/2000 + 114/1992 give the orphaned OZV/regional nařízení a parent statute (concrete interlink); environment cluster is internally dense — gate together.",
+  "STAGE 5 — TAX & FISCAL INFRASTRUCTURE (closes dangling-parent gaps for local fee ordinances). Acts: 565/1990, 243/2000, 250/2000, 218/2000, 456/2011, 242/2016, 16/1993, 523/1992, 17/2012, 187/2016, 416/2023. Rationale: 565/1990 + 250/2000 + 243/2000 form the local-fiscal triangle anchoring local předpisy; 456/2011/17/2012 supply the tax authorities. Gate.",
+  "STAGE 6 — CRIMINAL INSTITUTIONAL/ENFORCEMENT RING. Acts: 104/2013, 273/2008, 269/1994, 555/1992, 293/1993, 129/2008, 7/2002. Rationale: substantive criminal spine already ingested; this completes the institution/execution satellite ring and the EU-cooperation bridge (104/2013). Cross-tag 250/2016/251/2016 with 'criminal'/'quasi-criminal'. Gate.",
+  "STAGE 7 — COMMERCIAL & ECONOMIC REGULATION (broadest 'beyond-finance' breadth). Acts: 143/2001, 458/2000, 127/2005, 526/1990, 395/2009, 110/1997, 22/1997, 266/1994, 477/2001, 252/1997. Rationale: fills the substantive competition hole (143/2001) and the regulated-industry/consumer-facing sectors (energy, telecom); 458/2000 de-duped administrative+commercial. Gate.",
+  "STAGE 8 — FINANCIAL DECREE LAYER (first decrees ever; densest edges back into already-ingested statutes). Acts: 163/2014, 346/2013, 305/2016, 7/2018, 244/2013, 309/2017, 233/2009, 408/2010, 168/1999. Rationale: the corpus has 0 vyhlaska/0 narizeni_vlady; 163/2014 is the implementing core of three present banking/capital-market statutes with every inbound reference dangling. Home them in a new cz_financial decrees subgroup; re-run resolve_xrefs so vyhláška→zákon edges wire in. 168/1999 supports the insurance case-law. Gate.",
+  "STAGE 9 — EU SECONDARY OVERLAY (transposition/applicability crosslinks; eurlex connector, curate _EU_DATES per CELEX). Acts: 32014R0596 (MAR), 32017R1129 (Prospectus), 32009L0065 (UCITS), 32022R2554 (DORA), 32006L0112 (VAT Directive), 32016R1011 (BMR), 32019R2088 (SFDR), 32024R1624 (AMLR). Rationale: resolves the highest-citation dangling EU references out of ZPKT/ZISIF/VAT Act and future-proofs AML; mirrors the existing CZ-act↔EU-directive pairing. Run last so CZ anchors exist to attach to.",
+  "STAGE 10 — COMPLETION/LOW-PRIORITY (cluster completeness + foundational/state-identity + special-category employment). Acts: 527/1990, 207/2000, 200/1994, 115/2006, 202/2012, 254/2019, 354/2019, 250/2023, 275/2012, 62/2003, 130/2000, 491/2001, 349/1999, 3/1993, 352/2001, 110/1998, 373/2011, 361/2003, 13/1997(if not in S3). Rationale: low marginal interlink each but completes IP/family/evidence-profession/electoral/symbols/security clusters; 130/2000+491/2001 additionally re-anchor the local předpisy alongside 128/2000-131/2000. Final gate + full resolve_internal + resolve_xrefs + materialize + classify_taxonomy + temporal_complete + cascade_provision_tier."
+ ],
+ "expected_impact": "SCOPE: the system moves from a finance-heavy corpus (51 financial-market acts, only the procedural spine of public/private law) to whole-Czech-legal-environment coverage — adding the constitutional apex (currently 0 entries), the full Civil-Code satellite ring (IP, cadastre, registers, brokerage, state liability), the entire substantive administrative body (building, environment, migration, self-government, energy, telecom, competition), social-security, fiscal infrastructure, the criminal institutional ring, and the first-ever implementing-decree and broadened EU layers. CASE-LAW SUPPORT: of the 113 acts, 60 directly support the 200 first-instance civil rulings — turning today's dangling leaves into resolved edges for exactly the consumer-debt, lease, wage-garnishment, IP-licence and cost-award fact patterns that dominate the docket; the social-contribution + subsistence-minimum acts (589/1992, 592/1992, 48/1997, 110/2006) make net/garnishable-wage computation answerable for the first time. INTERLINK: large measurable gains from (a) the constitutional/court spine resolving hundreds of 'Čl. X Ústavy/Listiny' and court-competence references; (b) the hubs 455/1991, 256/2013, 269/1994 (bezúhonnost) fanning out across the existing financial/consumer/licensing perimeter; (c) the local-government statutes (128/2000, 129/2000, 131/2000, 565/1990, 250/2000, 114/1992) giving all 49 orphaned municipal/regional předpisy a parent for the first time; (d) the decree layer 163/2014/7/2018/244/2013 converting dangling 'stanoví vyhláška' pointers into vyhláška→zákon edges; (e) the EU overlay (MAR, Prospectus, UCITS, DORA, VAT Directive) completing CZ→EU transposition crosslinks. Scale: ~+113 source documents (+32% over today's 353) and ~+8,500 provisions (+35% over today's 24,299), with the per-stage >95% xref-precision gate keeping precision high as breadth grows.",
+ "totals": {
+  "acts": 113,
+  "est_provisions": 8512
+ },
+ "risks": [
+  "Provision counts are expert/order-of-magnitude estimates, not fetched: no assessor could hit the live e-Sbírka/EUR-Lex endpoint (sandboxed). Run a --dry-run resolve pass per act (HTTP-200 check) before each batch; actual n_provisions returns from ingest_act. Aggregate ~8,512 could swing materially (esp. 32006L0112 ~414, 104/2013 ~340, 283/2021 ~330, 163/2014 ~210).",
+  "Temporal/currency hazards on a few acts: 183/2006 is deliberately transitional (not the current code) and must be flagged so it does not mis-resolve bare '§ stavebního zákona'; 115/2006 + Civil-Code family provisions changed in the 2024-25 reform — ingest CURRENT consolidated text then run temporal_complete; 320/2001 (already in corpus) is repealed eff. 2027 by 231/2025; AMLD4 (present) is repealed from 2027-07-09, so 32024R1624 (AMLR) is the forward pair. Two flagged items already DROPPED: 165/2012 (unresolvable placeholder) and 38/2004 (superseded by 170/2018).",
+  "Cross-track duplication: 12 acts were proposed by two domains; they are collapsed to single ingests with multi-domain cross-tags (notably 589/1992, 592/1992, 48/1997 on the labour↔tax seam and 256/2013, 455/1991, 458/2000, 13/1997, 361/2000, 283/2021 across civil/admin/commercial). ingest_missing() de-dupes on source_document.external_id so re-runs are safe, BUT the registry entries must live in ONE place with cross-tags — flag to the corpus-merge/id-crosswalk effort so a parallel tax/civil-procedure track does not create duplicate nodes.",
+  "Old act numbers that are NOT repealed (141/1961, 582/1991, 589/1992, 358/1992, 527/1990, 2/1991) must not be treated as 'repealed' by the temporal model purely on age — same situation already flagged for 141/1961.",
+  "Hierarchy/doc_type classification: esbirka's CzechActSpec uses kind='act' generically, so constitutional-rank instruments (1/1993, 2/1993, 110/1998) and the vyhlášky/nařízení decree layer (163/2014 etc.) need post-ingest classify_taxonomy to sit at the correct tier; EU CELEX additions need a curated valid_from/valid_to row in eurlex _EU_DATES or dates won't parse.",
+  "Registry-home churn: cz_domains.py currently has no 'civil'/'private_law', 'constitutional', 'social_security', 'building', 'environment', 'migration', 'self_government', 'commercial_economic' groups, and cz_financial.py has no decrees group — these new PERIMETER keys must be added before ingestion or the batch won't enumerate. Verify connector wiring once per new group.",
+  "Gate discipline must hold: a batch that fails the >95% xref-precision gate (e.g. a large act like 104/2013 or 32006L0112 importing many bare '§27'/'Article 27' cites that ground to the wrong statute — a known engine weakness) must be quarantined and not block later independent stages; sequence so dependents (EU overlay Stage 9, decrees Stage 8) come after their CZ anchors exist."
+ ]
+}

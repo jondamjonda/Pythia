@@ -1,0 +1,66 @@
+[
+  {
+    "_note": "DRAFT / sample — advocate-review-pending. NOT the official directory. A tiny hand-built slice used ONLY by offline tests + the answer-slot demo. Codes/addresses/databoxes are illustrative and MUST NOT be treated as authoritative. The real directory FETCH is deferred to the operator-gated B3-P3 loader run.",
+    "code": "FU-JMK-BRNO-VENKOV",
+    "authority_type": "financni_urad",
+    "name": "Finanční úřad pro Jihomoravský kraj, Územní pracoviště Brno-venkov (DRAFT)",
+    "address": "Příkop 25, 602 00 Brno",
+    "databox": "np48kfp",
+    "source_uri": "https://www.financnisprava.cz/cs/financni-sprava/organy-financni-spravy",
+    "fetched_at": "2026-07-03",
+    "jurisdictions": [
+      {"area_kind": "kraj", "area_code": "CZ064"},
+      {"area_kind": "okres", "area_code": "CZ0642"}
+    ]
+  },
+  {
+    "_note": "DRAFT / sample.",
+    "code": "FU-PLK-PLZEN",
+    "authority_type": "financni_urad",
+    "name": "Finanční úřad pro Plzeňský kraj, Územní pracoviště Plzeň (DRAFT)",
+    "address": "nám. Českých bratří 8, 305 72 Plzeň",
+    "databox": "npi8m5x",
+    "source_uri": "https://www.financnisprava.cz/cs/financni-sprava/organy-financni-spravy",
+    "fetched_at": "2026-07-03",
+    "jurisdictions": [
+      {"area_kind": "kraj", "area_code": "CZ032"}
+    ]
+  },
+  {
+    "_note": "DRAFT / sample.",
+    "code": "OSSZ-BRNO-VENKOV",
+    "authority_type": "ossz",
+    "name": "Okresní správa sociálního zabezpečení Brno-venkov (DRAFT)",
+    "address": "Musilova 3, 614 00 Brno",
+    "databox": "yc5act9",
+    "source_uri": "https://www.cssz.cz/web/cz/kontakty",
+    "fetched_at": "2026-07-03",
+    "jurisdictions": [
+      {"area_kind": "okres", "area_code": "CZ0642"}
+    ]
+  },
+  {
+    "_note": "DRAFT / sample.",
+    "code": "KHS-JMK",
+    "authority_type": "khs",
+    "name": "Krajská hygienická stanice Jihomoravského kraje se sídlem v Brně (DRAFT)",
+    "address": "Jeřábkova 4, 602 00 Brno",
+    "databox": "jaaai36",
+    "source_uri": "https://www.mzcr.cz/",
+    "fetched_at": "2026-07-03",
+    "jurisdictions": [
+      {"area_kind": "kraj", "area_code": "CZ064"}
+    ]
+  },
+  {
+    "_note": "DRAFT / sample. NATIONAL-scope authority: it carries NO jurisdictions, so the resolver treats it as competent for its topic/type EVERYWHERE (any municipality). Used to test the national-vs-territorial branch.",
+    "code": "UOOU-CR",
+    "authority_type": "uoou",
+    "name": "Úřad pro ochranu osobních údajů (DRAFT)",
+    "address": "Pplk. Sochora 27, 170 00 Praha 7",
+    "databox": "qkbaa2n",
+    "source_uri": "https://www.uoou.cz/",
+    "fetched_at": "2026-07-03",
+    "jurisdictions": []
+  }
+]

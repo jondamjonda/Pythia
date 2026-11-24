@@ -1,0 +1,53 @@
+# Production Postgres on the VPS. The FastAPI service runs as a systemd
+# unit (regsuper-api.service) directly on the host so we don't carry
+# Docker-on-host networking overhead for the hot loop. Only Postgres lives
+# in Docker because of the pgvector + PostGIS build pinning.
+#
+# Differences from the dev docker-compose.yml at the project root:
+#   · network is host-mode bound to 127.0.0.1 (Caddy terminates external)
+#   · `restart: always` (dev uses unless-stopped)
+#   · volume lives under /var/lib/regsuper/pgdata for predictable backup paths
+#   · POSTGRES_PASSWORD pulled from /etc/regsuper/secrets.env
+
+services:
+  postgres:
+    build:
+      context: ../docker
+      dockerfile: postgres.Dockerfile
+    image: regsuper/postgres:16
+    container_name: regsuper-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: regsuper
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: regsuper
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - /var/lib/regsuper/pgdata:/var/lib/postgresql/data
+      # LEDGER-C5: mount migrations read-only OUTSIDE the auto-run initdb path and run only
+      # the curated additive chain (001..014) via docker/initdb.sh. A bare ./migrations mount
+      # would auto-run *_rollback.sql (self-undo) + the lockout-risk staged 015/016 on first init.
+      - ../migrations:/opt/migrations:ro
+      - ../docker/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U regsuper -d regsuper"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    shm_size: 256m
+    # Tune Postgres for the CX42 (8 vCPU / 16 GB RAM). Override per VPS class.
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_buffers=2GB"
+      - "-c"
+      - "effective_cache_size=8GB"
+      - "-c"
+      - "work_mem=64MB"
+      - "-c"
+      - "maintenance_work_mem=512MB"
+      - "-c"
+      - "max_connections=100"
+      - "-c"
+      - "max_wal_size=2GB"

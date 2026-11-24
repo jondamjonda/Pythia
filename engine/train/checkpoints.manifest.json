@@ -1,0 +1,30 @@
+{
+  "_comment": "GNN checkpoint reproducibility manifest — committed; the .pt binaries are gitignored. Verify: python train/checkpoints.py verify. Regenerate recipe: python train/checkpoints.py regen.",
+  "embedder_note": "All checkpoints MUST match the live bge-m3 embedder (emb_dim 1024); a 768-d mpnet-era checkpoint will fail warm_load_state_dict's embedder hard-check.",
+  "files": {
+    "gnn_stage1.pt": {
+      "sha256": "cb263e2e26e5f1bb0fdd3f07665bc0048d1713503d2c47505db419a6fde13656",
+      "size_bytes": 21558389,
+      "mtime": "2026-06-17T14:14:51Z",
+      "regenerate": ".venv/bin/python train/pretrain_stage1.py 1500 8",
+      "meta": {
+        "arch_version": "legalgfm/v2",
+        "arch_hash": "75c878194054fbe1",
+        "embedder_id": "BAAI/bge-m3",
+        "emb_dim": 1024
+      }
+    },
+    "gnn_stage2.pt": {
+      "sha256": "6a1ed7d940389e466749cbc0ef2188a0683f608992424f2d76ad6c8483e6a502",
+      "size_bytes": 21558837,
+      "mtime": "2026-06-20T01:05:33Z",
+      "regenerate": ".venv/bin/python train/train_stage2.py 60",
+      "meta": {
+        "arch_version": "legalgfm/v2",
+        "arch_hash": "75c878194054fbe1",
+        "embedder_id": "BAAI/bge-m3",
+        "emb_dim": 1024
+      }
+    }
+  }
+}

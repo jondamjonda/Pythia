@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NOTICE decoding="eng" type="object">
+   <EXPRESSION>
+      <URI>
+         <VALUE>http://publications.europa.eu/resource/cellar/3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006</VALUE>
+         <IDENTIFIER>3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006</IDENTIFIER>
+         <TYPE>cellar</TYPE>
+      </URI>
+      <SAMEAS>
+         <URI>
+            <VALUE>http://publications.europa.eu/resource/uriserv/OJ.L_.2016.119.01.0001.01.ENG</VALUE>
+            <IDENTIFIER>OJ.L_.2016.119.01.0001.01.ENG</IDENTIFIER>
+            <TYPE>uriserv</TYPE>
+         </URI>
+      </SAMEAS>
+      <SAMEAS>
+         <URI>
+            <VALUE>http://publications.europa.eu/resource/celex/32016R0679.ENG</VALUE>
+            <IDENTIFIER>32016R0679.ENG</IDENTIFIER>
+            <TYPE>celex</TYPE>
+         </URI>
+      </SAMEAS>
+      <SAMEAS>
+         <URI>
+            <VALUE>http://publications.europa.eu/resource/oj/JOL_2016_119_R_0001.ENG</VALUE>
+            <IDENTIFIER>JOL_2016_119_R_0001.ENG</IDENTIFIER>
+            <TYPE>oj</TYPE>
+         </URI>
+      </SAMEAS>
+      <SAMEAS>
+         <URI>
+            <VALUE>http://publications.europa.eu/resource/oj/JOL_2016_119_R_0001.RNG</VALUE>
+            <IDENTIFIER>JOL_2016_119_R_0001.RNG</IDENTIFIER>
+            <TYPE>oj</TYPE>
+         </URI>
+      </SAMEAS>
+      <EXPRESSION_MANIFESTED_BY_MANIFESTATION type="link">
+         <URI>
+            <VALUE>http://publications.europa.eu/resource/cellar/3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006.01</VALUE>
+            <IDENTIFIER>3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006.01</IDENTIFIER>
+            <TYPE>cellar</TYPE>
+         </URI>
+         <SAMEAS>
+            <URI>
+               <VALUE>http://publications.europa.eu/resource/oj/JOL_2016_119_R_0001.ENG.pdfa1a</VALUE>
+               <IDENTIFIER>JOL_2016_119_R_0001.ENG.pdfa1a</IDENTIFIER>
+               <TYPE>oj</TYPE>
+            </URI>
+         </SAMEAS>
+         <SAMEAS>
+            <URI>
+               <VALUE>http://publications.europa.eu/resource/uriserv/OJ.L_.2016.119.01.0001.01.ENG.pdfa1a</VALUE>
+               <IDENTIFIER>OJ.L_.2016.119.01.0001.01.ENG.pdfa1a</IDENTIFIER>
+               <TYPE>uriserv</TYPE>
+            </URI>
+         </SAMEAS>
+      </EXPRESSION_MANIFESTED_BY_MANIFESTATION>
+      <LANG type="data">
+         <VALUE>eng</VALUE>
+      </LANG>
+      <TITLE type="data">
+         <VALUE>Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation) (Text with EEA relevance)</VALUE>
+      </TITLE>
+      <EXPRESSION_BELONGS_TO_WORK type="link">
+         <URI>
+            <VALUE>http://publications.europa.eu/resource/cellar/3e485e15-11bd-11e6-ba9a-01aa75ed71a1</VALUE>
+            <IDENTIFIER>3e485e15-11bd-11e6-ba9a-01aa75ed71a1</IDENTIFIER>
+            <TYPE>cellar</TYPE>
+         </URI>
+         <SAMEAS>
+            <URI>
+               <VALUE>http://publications.europa.eu/resource/celex/32016R0679</VALUE>
+               <IDENTIFIER>32016R0679</IDENTIFIER>
+               <TYPE>celex</TYPE>
+            </URI>
+         </SAMEAS>
+         <SAMEAS>
+            <URI>
+               <VALUE>http://publications.europa.eu/resource/eli/reg/2016/679/oj</VALUE>
+               <IDENTIFIER>reg:2016:679:oj</IDENTIFIER>
+               <TYPE>eli</TYPE>
+            </URI>
+         </SAMEAS>
+         <SAMEAS>
+            <URI>
+               <VALUE>http://publications.europa.eu/resource/oj/JOL_2016_119_R_0001</VALUE>
+               <IDENTIFIER>JOL_2016_119_R_0001</IDENTIFIER>
+               <TYPE>oj</TYPE>
+            </URI>
+         </SAMEAS>
+      </EXPRESSION_BELONGS_TO_WORK>
+      <CREATIONDATE type="date">
+         <VALUE>1001-01-01T00:00:00.000+00:00</VALUE>
+         <YEAR>1001</YEAR>
+         <MONTH>01</MONTH>
+         <DAY>01</DAY>
+      </CREATIONDATE>
+      <EXPRESSION_MANIFESTED_BY_MANIFESTATION type="link">
+         <URI>
+            <VALUE>http://publications.europa.eu/resource/cellar/3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006.03</VALUE>
+            <IDENTIFIER>3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006.03</IDENTIFIER>
+            <TYPE>cellar</TYPE>
+         </URI>
+         <SAMEAS>
+            <URI>
+               <VALUE>http://publications.europa.eu/resource/uriserv/OJ.L_.2016.119.01.0001.01.ENG.xhtml</VALUE>
+               <IDENTIFIER>OJ.L_.2016.119.01.0001.01.ENG.xhtml</IDENTIFIER>
+               <TYPE>uriserv</TYPE>
+            </URI>
+         </SAMEAS>
+         <SAMEAS>
+            <URI>
+               <VALUE>http://publications.europa.eu/resource/oj/JOL_2016_119_R_0001.ENG.xhtml</VALUE>
+               <IDENTIFIER>JOL_2016_119_R_0001.ENG.xhtml</IDENTIFIER>
+               <TYPE>oj</TYPE>
+            </URI>
+         </SAMEAS>
+      </EXPRESSION_MANIFESTED_BY_MANIFESTATION>
+      <LASTMODIFICATIONDATE type="date">
+         <VALUE>2025-02-05T16:25:55.607+01:00</VALUE>
+         <YEAR>2025</YEAR>
+         <MONTH>02</MONTH>
+         <DAY>05</DAY>
+      </LASTMODIFICATIONDATE>
+      <EXPRESSION_MANIFESTED_BY_MANIFESTATION type="link">
+         <URI>
+            <VALUE>http://publications.europa.eu/resource/cellar/3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006.02</VALUE>
+            <IDENTIFIER>3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006.02</IDENTIFIER>
+            <TYPE>cellar</TYPE>
+         </URI>
+         <SAMEAS>
+            <URI>
+               <VALUE>http://publications.europa.eu/resource/uriserv/OJ.L_.2016.119.01.0001.01.ENG.fmx4</VALUE>
+               <IDENTIFIER>OJ.L_.2016.119.01.0001.01.ENG.fmx4</IDENTIFIER>
+               <TYPE>uriserv</TYPE>
+            </URI>
+         </SAMEAS>
+         <SAMEAS>
+            <URI>
+               <VALUE>http://publications.europa.eu/resource/oj/JOL_2016_119_R_0001.ENG.fmx4</VALUE>
+               <IDENTIFIER>JOL_2016_119_R_0001.ENG.fmx4</IDENTIFIER>
+               <TYPE>oj</TYPE>
+            </URI>
+         </SAMEAS>
+      </EXPRESSION_MANIFESTED_BY_MANIFESTATION>
+      <LANG type="data">
+         <VALUE>en</VALUE>
+      </LANG>
+      <EXPRESSION_TITLE type="data">
+         <VALUE>Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation) (Text with EEA relevance)</VALUE>
+      </EXPRESSION_TITLE>
+      <EXPRESSION_USES_LANGUAGE type="concept">
+         <URI>
+            <VALUE>http://publications.europa.eu/resource/authority/language/ENG</VALUE>
+            <IDENTIFIER>ENG</IDENTIFIER>
+            <TYPE>language</TYPE>
+         </URI>
+         <OP-CODE>ENG</OP-CODE>
+         <IDENTIFIER>ENG</IDENTIFIER>
+         <PREFLABEL>English</PREFLABEL>
+         <ALTLABEL>English</ALTLABEL>
+      </EXPRESSION_USES_LANGUAGE>
+      <EXPRESSION_TITLE_SHORT type="data">
+         <VALUE>gdpr, personal data, personal data protection</VALUE>
+      </EXPRESSION_TITLE_SHORT>
+   </EXPRESSION>
+</NOTICE>
