@@ -276,7 +276,8 @@ def test_in_force_dialects(status):
 
 
 @pytest.mark.parametrize(
-    "status", ["future-effective", "future_effective", "FUTURE_EFFECTIVE", "pending"]
+    "status",
+    ["future-effective", "future_effective", "FUTURE_EFFECTIVE", "pending", "NOT_YET_EFFECTIVE"],
 )
 def test_future_status_dialects_without_dates(status):
     assert temporal_freshness(None, None, status, AS_OF)["verdict"] == "future_effective"
@@ -331,3 +332,13 @@ def test_superseded_status_without_dates_is_superseded_not_unknown(status):
     out = temporal_freshness(None, None, status, AS_OF)
     assert out["verdict"] == "superseded"
     assert out["stale_since"] is None
+
+
+@pytest.mark.parametrize(
+    ("vf", "expected"),
+    [(date(2027, 1, 1), "future_effective"), (date(2020, 1, 1), "current")],
+)
+def test_engine_not_yet_effective_status_defers_to_dates(vf, expected):
+    # With a date present the date still decides, as for every other status: a stale
+    # NOT_YET_EFFECTIVE on a provision whose start has passed reads current.
+    assert temporal_freshness(vf, None, "NOT_YET_EFFECTIVE", AS_OF)["verdict"] == expected

@@ -77,6 +77,7 @@ _FUTURE_MARKERS = (
     "future effective",
     "futureeffective",
     "not yet in force",
+    "not yet effective",  # the engine's NOT_YET_EFFECTIVE (otherwise read via "effective")
     "pending",
     "prospective",
 )
